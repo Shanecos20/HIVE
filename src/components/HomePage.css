@@ -1,0 +1,64 @@
+/* src/components/HomePage.css */
+
+.hero-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px; /* To offset the fixed navbar */
+  background-image: url("");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-text {
+  flex: 1;
+  padding: 20px;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.hero-model {
+  flex: 1;
+  width: 100%;
+  max-width: 600px;
+  height: 80vh;
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column;
+    padding-top: 60px;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+}
+
+.cta-button:hover {
+  background-color: #ffd700;
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+
