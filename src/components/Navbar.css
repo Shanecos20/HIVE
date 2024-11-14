@@ -1,38 +1,134 @@
-/* src/components/Navbar.css */
-
+/* Navbar container styling */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 20px;
-    background-color: #FFD700; /* Gold color reminiscent of honey */
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo with custom font and padding */
+.navbar-logo {
+  font-family: 'CustomFont', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding-top: 10px;
+  z-index: 1000;
+}
+
+/* Burger menu styling */
+.burger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  z-index: 1100;
+}
+
+.burger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+/* Transform burger to a symmetrical "X" when open */
+.burger.open .bar:nth-child(1) {
+  transform: translate(5px, 8px) rotate(45deg);
+}
+
+.burger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open .bar:nth-child(3) {
+  transform: translate(5px, -8px) rotate(-45deg);
+}
+
+/* Overlay menu with animations */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex; /* Use flex to center content */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.overlay.slide-down {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.overlay.slide-up {
+  opacity: 0;
+  visibility: visible;
+  transform: translateY(-100%);
+}
+
+.overlay-menu {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.overlay-menu li {
+  margin: 20px 0;
+}
+
+.overlay-menu li a {
+  font-size: 4rem;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-family: Emotion;
+}
+
+.overlay-menu li a:hover {
+  color: #FFA500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .navbar-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #000;
+    font-size: 1.2rem;
   }
-  
-  .navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+
+  .overlay-menu li a {
+    font-size: 3rem;
   }
-  
-  .navbar-links li a {
-    text-decoration: none;
-    color: #000;
-    font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .navbar-logo {
+    font-size: 1rem;
   }
-  
-  @media (max-width: 768px) {
-    .navbar-links {
-      display: none; /* Hide links on smaller screens for simplicity */
-    }
+
+  .overlay-menu li a {
+    font-size: 2.5rem;
   }
-  
+}
+
+/* Disable scrolling when overlay is active */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Blur effect on main content */
+.blur {
+  filter: blur(8px);
+  transition: filter 0.3s ease;
+}

@@ -1,0 +1,35 @@
+/* ScrollBar.css */
+
+.scroll-bar {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 100px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .scroll-cylinder {
+    width: 8px;
+    height: 40px;
+    background-color: #141717; /* Darker than background */
+    border-radius: 4px;
+    transition: height 0.2s ease, transform 0.2s ease;
+    margin-right: -20px;
+  }
+  
+  .extrude-down .scroll-cylinder {
+    height: 60px;
+    transform: translateY(10px); /* Extrude downwards */
+  }
+  
+  .extrude-up .scroll-cylinder {
+    height: 60px;
+    transform: translateY(-10px); /* Extrude upwards */
+  }
+  

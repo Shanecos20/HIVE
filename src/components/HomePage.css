@@ -1,64 +1,120 @@
 /* src/components/HomePage.css */
 
-.hero-section {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding-top: 80px; /* To offset the fixed navbar */
-  background-image: url("");
-  background-size: cover;
-  background-position: center;
-}
-
-.hero-text {
-  flex: 1;
-  padding: 20px;
-}
-
-.hero-text h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.hero-text p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #555;
-}
-
-.cta-button {
-  padding: 15px 30px;
-  background-color: #000;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.hero-model {
-  flex: 1;
-  width: 100%;
-  max-width: 600px;
-  height: 80vh;
-}
-
-@media (max-width: 1024px) {
-  .hero-section {
+.hero {
+    position: relative;
+    display: flex;
     flex-direction: column;
-    padding-top: 60px;
-  }
-
-  .hero-text {
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    background-color: #202424;
+    min-height: 100vh;
+    overflow: hidden;
     text-align: center;
   }
-}
-
-.cta-button:hover {
-  background-color: #ffd700;
-  color: #000;
-  transition: background-color 0.3s ease;
-}
-
-
+  
+  .hero-title {
+    font-size: 6rem;
+    color: #FFFFFF;
+    font-family: 'Emotion', sans-serif;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .content-container {
+    display: flex;
+    flex-direction: row; /* Row layout on desktop */
+    align-items: center;
+    justify-content: center; /* Center contents */
+    gap: 60px;
+    width: 100%;
+    max-width: 1200px; /* Slightly reduce max width for centering */
+    padding: 0 20px;
+    margin: 0 auto; /* Center the container */
+  }
+  
+  .qr-container {
+    flex: 1 1 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-title-container {
+    flex: 1 1 50%;
+    text-align: center;
+  }
+  
+  .phone-model-container {
+    flex: 1 1 30%;
+    max-width: 400px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .qr-image {
+    width: 200px;
+    height: 200px;
+    background: url('../../public/images/QRCODE.png') no-repeat center center;
+    background-size: contain;
+  }
+  
+  .cta-container {
+    margin-top: 50px;
+  }
+  
+  .hero-slogan {
+    font-size: 1.5rem;
+    color: #AAAAAA;
+    margin-bottom: 25px;
+  }
+  
+  .cta-button {
+    padding: 12px 30px;
+    background-color: #00ff66;
+    color: #202424;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #FFA500;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 1024px) {
+    .content-container {
+      flex-direction: column; /* Stack items on smaller screens */
+      gap: 30px;
+    }
+  
+    /* Reorder items for mobile view */
+    .hero-title-container {
+      order: 1;
+    }
+  
+    .phone-model-container {
+      order: 2;
+      max-width: 300px;
+      height: 300px; /* Adjust height for mobile */
+    }
+  
+    .qr-container {
+      order: 3;
+    }
+  
+    .hero-title {
+      font-size: 3rem;
+    }
+  
+    .qr-image {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  
