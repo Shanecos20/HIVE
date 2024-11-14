@@ -9,11 +9,12 @@ function Phone() {
   const phoneRef = useRef();
 
   // Load the GLTF model
-  const { scene } = useGLTF('/models/smartphone3.glb');
+  const { scene } = useGLTF('/models/smartphone2.glb');
 
   // Load the texture for the screen image
   const screenTexture = useTexture('/images/image.png');
-  screenTexture.flipY = false; // Fix the upside-down texture issue
+    screenTexture.flipY = false; // Fix the upside-down texture issue
+    screenTexture.flupZ = true;
   //remove mirror effect
    
 
