@@ -6,7 +6,7 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 function Phone() {
-  const { scene } = useGLTF('/models/smartphone.glb');
+  const { scene } = useGLTF('/models/smartphone2.glb');
   const phoneRef = useRef();
 
   // Oscillate rotation over time
@@ -18,9 +18,9 @@ function Phone() {
   });
 
   useEffect(() => {
-    const screenMesh = scene.getObjectByName('');
+    const screenMesh = scene.getObjectByName('Screen');
     if (screenMesh) {
-      screenMesh.material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+      screenMesh.material.color.set("gold"); // Changes color to blue
       screenMesh.material.needsUpdate = true;
       console.log('Screen material changed to green');
     } else {

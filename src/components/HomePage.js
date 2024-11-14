@@ -23,45 +23,45 @@ const HomePage = () => {
     <>
       <Navbar />
       <div className="main-content">
-      <section className="flex flex-col items-center justify-center min-h-screen bg-[#202424] text-white pt-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full px-4 mx-auto items-center">
-          {/* QR Code */}
-          <div className="flex justify-center order-3 md:order-1">
-            <div
-              className="bg-center bg-no-repeat bg-contain"
-              style={{
-                backgroundImage: "url('/images/QRCODE.png')",
-                width: '150px',
-                height: '150px',
-              }}
-            />
-          </div>
+        <section className="flex flex-col items-center justify-center min-h-screen bg-[#202424] text-white pt-20 pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full px-4 mx-auto items-center">
+            {/* QR Code */}
+            <div className="flex justify-center order-3 md:order-1 lg:relative lg:-top-10 lg:-left-20">
+              <div
+                className="bg-center bg-no-repeat bg-contain"
+                style={{
+                  backgroundImage: "url('/images/QRCODE.png')",
+                  width: '150px',
+                  height: '150px',
+                }}
+              />
+            </div>
 
-          {/* Hero Title and Content */}
-          <div className="text-center flex flex-col items-center order-1 md:order-2">
-            <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-10 font-[Emotion]">
-              HIVE
-            </h1>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-8 lg:mb-12">
-              Revolutionizing Beekeeping with IoT Innovation
-            </p>
-            <a
-              href="#download"
-              className="inline-block px-8 py-4 mt-4 lg:mt-8 bg-yellow-400 text-[#202424] rounded-md font-bold text-xl md:text-2xl transition-colors duration-300 hover:bg-yellow-500"
-            >
-              Download Now
-            </a>
-          </div>
+            {/* Hero Title and Content */}
+            <div className="text-center flex flex-col items-center order-1 md:order-2">
+              <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-10 font-[Emotion]">
+                HIVE
+              </h1>
+              <p className="text-lg md:text-xl lg:text-lg xl:text-base text-gray-400 mb-8 lg:mb-12 mt-20 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                Revolutionizing Beekeeping with IoT Innovation
+              </p>
+              <a
+                href="#download"
+                className="inline-block px-8 py-4 mt-4 lg:mt-8 bg-yellow-400 text-[#202424] rounded-md font-bold text-xl md:text-2xl transition-colors duration-300 hover:bg-yellow-500"
+              >
+                Download Now
+              </a>
+            </div>
 
-          {/* Phone Model */}
-          <div className="flex justify-center order-2 md:order-3 w-full md:w-auto">
-            <div className="w-64 h-96 md:w-80 md:h-[32rem] lg:w-96 lg:h-[36rem]">
-              <PhoneModel />
+            {/* Phone Model */}
+            <div className="flex justify-center order-2 md:order-3 w-full md:w-auto ml-auto lg:relative lg:-top-10 lg:-right-20">
+              <div className="w-64 h-96 md:w-80 md:h-[32rem] lg:w-96 lg:h-[36rem]">
+                <PhoneModel />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <Footer />
+        </section>
+        <Footer />
       </div>
     </>
   );
