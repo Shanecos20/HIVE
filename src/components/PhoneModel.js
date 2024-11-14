@@ -2,31 +2,41 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { OrbitControls, useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 function Phone() {
-  const { scene } = useGLTF('/models/smartphone2.glb');
   const phoneRef = useRef();
+
+  // Load the GLTF model
+  const { scene } = useGLTF('/models/smartphone3.glb');
+
+  // Load the texture for the screen image
+  const screenTexture = useTexture('/images/image.png');
+  screenTexture.flipY = false; // Fix the upside-down texture issue
+  //remove mirror effect
+   
 
   // Oscillate rotation over time
   useFrame(({ clock }) => {
     if (phoneRef.current) {
-      const rotationAngle = Math.sin(clock.getElapsedTime()) * 0.1; // Adjust the 0.1 to increase/decrease rotation angle
+      const rotationAngle = Math.sin(clock.getElapsedTime()) * 0.1;
       phoneRef.current.rotation.y = rotationAngle;
     }
   });
 
   useEffect(() => {
-    const screenMesh = scene.getObjectByName('Screen');
-    if (screenMesh) {
-      screenMesh.material.color.set("gold"); // Changes color to blue
-      screenMesh.material.needsUpdate = true;
-      console.log('Screen material changed to green');
-    } else {
-      console.warn('Screen mesh not found in the model.');
+    if (scene) {
+      const screenMesh = scene.getObjectByName('Screen');
+      if (screenMesh) {
+        screenMesh.material = new THREE.MeshBasicMaterial({ map: screenTexture });
+        screenMesh.material.needsUpdate = true;
+        console.log('Screen texture applied with corrected orientation.');
+      } else {
+        console.warn('Screen mesh not found in the model.');
+      }
     }
-  }, [scene]);
+  }, [scene, screenTexture]);
 
   return <primitive ref={phoneRef} object={scene} scale={[1.5, 1.5, 1.5]} />;
 }
@@ -34,7 +44,7 @@ function Phone() {
 const PhoneModel = () => {
   return (
     <Canvas
-      camera={{ position: [0, 0, 3], fov: 80 }}
+      camera={{ position: [0, 0, 3], fov: 65 }}
       style={{ width: '100%', height: '100%' }}
     >
       <ambientLight intensity={0.5} />
