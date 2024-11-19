@@ -45,7 +45,7 @@ function Phone() {
 const PhoneModel = () => {
   return (
     <Canvas
-      camera={{ position: [0, 0, 3], fov: 65 }}
+      camera={{ position: [0, 0, 3], fov: 30 }}
       style={{ width: '100%', height: '100%' }}
     >
       <ambientLight intensity={0.5} />

@@ -8,22 +8,29 @@ const Navbar = () => {
 
   // Toggle body scroll lock and blur effect
   useEffect(() => {
+    const mainContent = document.querySelector('.main-content');
+
     if (menuOpen) {
       document.body.classList.add('no-scroll');
-      document.querySelector('.main-content').classList.add('blur');
+      mainContent?.classList.add('blur'); // Optional chaining to ensure mainContent exists
     } else {
       document.body.classList.remove('no-scroll');
-      document.querySelector('.main-content').classList.remove('blur');
+      mainContent?.classList.remove('blur');
     }
+
+    // Cleanup effect to remove classes on unmount or when menuOpen changes
     return () => {
       document.body.classList.remove('no-scroll');
-      document.querySelector('.main-content').classList.remove('blur');
+      mainContent?.classList.remove('blur');
     };
   }, [menuOpen]);
 
   return (
     <nav className="navbar">
       <div className="navbar-logo">HIVE</div>
+      <div className="navbar-about">
+        <a href="#about">Learn More</a> {/* New About link in navbar */}
+      </div>
       <div
         className={`burger ${menuOpen ? 'open' : ''}`}
         onClick={() => setMenuOpen(!menuOpen)}
@@ -36,6 +43,7 @@ const Navbar = () => {
         <ul className="overlay-menu">
           <li><a href="#home">Home</a></li>
           <li><a href="#download">Download</a></li>
+          <li><a href="#about">About</a></li> {/* New About button in overlay */}
           <li><a href="#marketplace">Products</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>

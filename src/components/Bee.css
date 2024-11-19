@@ -1,0 +1,6 @@
+/* src/components/Bee.css */
+canvas {
+    opacity: 1;
+    transition: opacity 0.5s ease-out; /* Smooth fading */
+  }
+  

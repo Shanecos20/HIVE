@@ -1,120 +1,329 @@
-/* src/components/HomePage.css */
+/* Reset and Fonts */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.hero {
-    position: relative;
-    display: flex;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Arial", sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Navbar Adjustment */
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Title Section */
+.title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20vh; /* Move text down slightly */
+  position: relative;
+  z-index: 10;
+}
+
+.title-line {
+  font-size: clamp(3rem, 10vw, 8rem); /* Increased font size */
+  font-weight: bold;
+  line-height: 1.2;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  opacity: 0; /* Hide text initially */
+  overflow: visible;
+}
+
+.text-line {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  margin: 0 10px;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, black 0%, transparent 100%);
+  transform: translateX(0%);
+  z-index: 5;
+}
+
+.unveil {
+  animation: fadeInText 1s forwards;
+}
+
+.unveil.delay-1 {
+  animation-delay: 0.5s;
+}
+
+.unveil .overlay {
+  animation: unveilOverlay 1s forwards;
+}
+
+.unveil.delay-1 .overlay {
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes unveilOverlay {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Move Apart Animation */
+.move-apart .text:nth-child(1) {
+  animation: moveLeft 1s forwards;
+}
+
+.move-apart .text:nth-child(2) {
+  animation: moveRight 1s forwards;
+}
+
+.move-apart .overlay {
+  display: none;
+}
+
+@keyframes moveLeft {
+  to {
+    transform: translateX(-150px);
+  }
+}
+
+@keyframes moveRight {
+  to {
+    transform: translateX(150px);
+  }
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  max-width: 800px;
+  margin-top: 20px;
+  opacity: 0;
+  text-align: center;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.subtitle.fade-in {
+  animation: fadeInSubtitle 1s forwards;
+}
+
+.subtitle.delay-3 {
+  animation-delay: 2s;
+}
+
+@keyframes fadeInSubtitle {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Card Stack */
+.card-stack {
+  position: relative;
+  width: 60vw; /* Reduced card width */
+  max-width: 300px; /* Reduced max width */
+  height: calc(60vw * 1.3); /* Slightly shorter cards */
+  max-height: 400px; /* Reduced max height */
+  margin-top: -15vh;
+  transform: translateY(-150vh); /* Start cards offscreen */
+  transition: transform 1.5s ease-in-out;
+  z-index: 5;
+}
+
+.card-stack.drop-in {
+  transform: translateY(-30vh); /* Cards stop earlier */
+}
+
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Initial Rotations and Positions */
+.card-1 {
+  transform: rotate(-10deg) translate(-20px, -20px);
+  z-index: 3;
+}
+
+.card-2 {
+  transform: rotate(0deg) translate(0px, 0px);
+  z-index: 2;
+}
+
+.card-3 {
+  transform: rotate(10deg) translate(20px, 20px);
+  z-index: 1;
+}
+
+/* Carousel Animation */
+.card-stack.drop-in .card-1,
+.card-stack.drop-in .card-2,
+.card-stack.drop-in .card-3 {
+  animation: cardCycle 9s infinite;
+}
+
+.card-stack.drop-in .card-1 {
+  animation-delay: 0s;
+}
+
+.card-stack.drop-in .card-2 {
+  animation-delay: 3s;
+}
+
+.card-stack.drop-in .card-3 {
+  animation-delay: 6s;
+}
+
+@keyframes cardCycle {
+  0%,
+  20% {
+    transform: var(--start-transform);
+    z-index: var(--start-zindex);
+  }
+  25%,
+  30% {
+    transform: rotate(var(--start-rotation)) translate(-150%, 0);
+    z-index: var(--start-zindex);
+  }
+  35%,
+  100% {
+    transform: var(--end-transform);
+    z-index: var(--end-zindex);
+  }
+}
+
+/* CSS Variables for Card Animations */
+.card-stack.drop-in .card-1 {
+  --start-transform: rotate(-10deg) translate(-20px, -20px);
+  --start-rotation: -10deg;
+  --start-zindex: 3;
+  --end-transform: rotate(10deg) translate(20px, 20px);
+  --end-zindex: 1;
+}
+
+.card-stack.drop-in .card-2 {
+  --start-transform: rotate(0deg) translate(0px, 0px);
+  --start-rotation: 0deg;
+  --start-zindex: 2;
+  --end-transform: rotate(-10deg) translate(-20px, -20px);
+  --end-zindex: 3;
+}
+
+.card-stack.drop-in .card-3 {
+  --start-transform: rotate(10deg) translate(20px, 20px);
+  --start-rotation: 10deg;
+  --start-zindex: 1;
+  --end-transform: rotate(0deg) translate(0px, 0px);
+  --end-zindex: 2;
+}
+
+/* Prevent Words from Getting Cut Off */
+.title-line,
+.text-line {
+  overflow: visible;
+}
+
+/* Adjustments for Smaller Screens */
+@media (max-width: 768px) {
+  /* On screens not large */
+  .move-apart .text:nth-child(1),
+  .move-apart .text:nth-child(2) {
+    animation: none;
+    transform: none;
+  }
+
+  /* Adjust text lines */
+  .title-section {
+    margin-top: 10vh;
+  }
+
+  .title-line {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 80px 20px;
-    background-color: #202424;
-    min-height: 100vh;
-    overflow: hidden;
-    text-align: center;
   }
-  
-  .hero-title {
-    font-size: 6rem;
-    color: #FFFFFF;
-    font-family: 'Emotion', sans-serif;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-  
-  .content-container {
-    display: flex;
-    flex-direction: row; /* Row layout on desktop */
+
+  .text-line {
+    flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center contents */
-    gap: 60px;
-    width: 100%;
-    max-width: 1200px; /* Slightly reduce max width for centering */
-    padding: 0 20px;
-    margin: 0 auto; /* Center the container */
   }
-  
-  .qr-container {
-    flex: 1 1 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+  .title-line:nth-child(2) {
+    margin-top: 20px;
   }
-  
-  .hero-title-container {
-    flex: 1 1 50%;
-    text-align: center;
+
+  /* Adjust card position */
+  .card-stack {
+    margin-top: 0;
+    transform: translateY(-60vh); /* Start higher */
   }
-  
-  .phone-model-container {
-    flex: 1 1 30%;
-    max-width: 400px;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+  .card-stack.drop-in {
+    transform: translateY(-25vh); /* Stop earlier */
   }
-  
-  .qr-image {
-    width: 200px;
-    height: 200px;
-    background: url('../../public/images/QRCODE.png') no-repeat center center;
-    background-size: contain;
+
+  /* Adjust text to move downwards */
+  .title-line.move-apart:nth-child(2) .text-line {
+    animation: moveDown 1s forwards;
   }
-  
-  .cta-container {
-    margin-top: 50px;
-  }
-  
-  .hero-slogan {
-    font-size: 1.5rem;
-    color: #AAAAAA;
-    margin-bottom: 25px;
-  }
-  
-  .cta-button {
-    padding: 12px 30px;
-    background-color: #00ff66;
-    color: #202424;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    background-color: #FFA500;
-  }
-  
-  /* Responsive styles */
-  @media screen and (max-width: 1024px) {
-    .content-container {
-      flex-direction: column; /* Stack items on smaller screens */
-      gap: 30px;
-    }
-  
-    /* Reorder items for mobile view */
-    .hero-title-container {
-      order: 1;
-    }
-  
-    .phone-model-container {
-      order: 2;
-      max-width: 300px;
-      height: 300px; /* Adjust height for mobile */
-    }
-  
-    .qr-container {
-      order: 3;
-    }
-  
-    .hero-title {
-      font-size: 3rem;
-    }
-  
-    .qr-image {
-      width: 150px;
-      height: 150px;
+
+  @keyframes moveDown {
+    to {
+      transform: translateY(150px);
     }
   }
-  
+
+  /* Adjust subtitle */
+  .subtitle {
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    bottom: 20px;
+    max-width: 90%;
+  }
+}
