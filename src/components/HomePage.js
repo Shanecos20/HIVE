@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar"; // Adjust the import as needed
 import "./HomePage.css";
-import field1 from "../gifs/field1.gif";
-import field2 from "../gifs/field2.gif";
-import field3 from "../gifs/field3.gif";
-import field4 from "../gifs/field4.gif";
+import bee1vid from "../media/bee1.mp4";
+import bee2vid from "../media/bee2.mp4";
+import bee3vid from "../media/bee3.mp4";
+import bee4vid from "../media/bee4.mp4";
 import { motion } from "framer-motion";
 
 const HomePage = () => {
@@ -17,10 +17,10 @@ const HomePage = () => {
 
   // Initial cards setup for overlapping cards
   const initialCards = [
-    { id: 1, gif: field1, zIndex: 1004, rotation: Math.random() * 20 - 10 },
-    { id: 2, gif: field2, zIndex: 1003, rotation: Math.random() * 20 - 10 },
-    { id: 3, gif: field3, zIndex: 1002, rotation: Math.random() * 20 - 10 },
-    { id: 4, gif: field4, zIndex: 1001, rotation: Math.random() * 20 - 10 },
+    { id: 1, video: bee1vid, zIndex: 1004, rotation: Math.random() * 20 - 10 },
+    { id: 2, video: bee2vid, zIndex: 1003, rotation: Math.random() * 20 - 10 },
+    { id: 3, video: bee3vid, zIndex: 1002, rotation: Math.random() * 20 - 10 },
+    { id: 4, video: bee4vid, zIndex: 1001, rotation: Math.random() * 20 - 10 },
   ];
 
   const [cards, setCards] = useState(initialCards);
@@ -103,12 +103,16 @@ const HomePage = () => {
         ease: "easeInOut",
       },
     }),
-    moveLeft: (custom) => ({
-      x: -350,
-      y: 0, // Maintain vertical position
-      rotate: custom * 10, // Maintain rotation
-      transition: { duration: 1.5, ease: "easeInOut" },
-    }),
+    moveLeft: (custom) => {
+      const screenWidth = window.innerWidth; // Get current screen width
+      const moveDistance = screenWidth < 768 ? -150 : -350; // Adjust based on screen size
+      return {
+        x: moveDistance,
+        y: 0,
+        rotate: custom * 10,
+        transition: { duration: 1, ease: "easeInOut" },
+      };
+    },
   };
 
   return (
@@ -121,7 +125,7 @@ const HomePage = () => {
           } ${cardsVisible ? "move-apart" : ""}`}
         >
           <div className="text-line">
-            <span className="text text1">HIVE</span>
+            <span className="text" id="HIVE"><span id="hSpan">H</span>IVE</span>
             <span className="text text2">APP</span>
             <div className="overlay"></div>
           </div>
@@ -132,8 +136,8 @@ const HomePage = () => {
           } ${cardsVisible ? "move-apart" : ""}`}
         >
           <div className="text-line">
-            <span className="text text1">OUR</span>
-            <span className="text text2">MISSION</span>
+            <span className="text text1">IS <span id="Underline">OUR</span></span>
+            <span className="text" id="Mission">MISSION</span>
             <div className="overlay"></div>
           </div>
         </h1>
@@ -156,16 +160,9 @@ const HomePage = () => {
         {cards.map((card, index) => (
           <motion.div
             key={card.id}
+            className="cardElement"
             style={{
-              position: "absolute",
-              width: "270px",
-              height: "370px",
-              backgroundImage: `url(${card.gif})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
               zIndex: card.zIndex,
-              borderRadius: "10px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
             }}
             custom={index}
             variants={cardVariants}
@@ -182,7 +179,20 @@ const HomePage = () => {
                 handleAnimationComplete(card.id);
               }
             }}
-          />
+          >
+            <video
+              src={card.video}
+              autoPlay
+              muted
+              loop
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "8px",
+              }}
+            />
+          </motion.div>
         ))}
       </div>
       <p className={`subtitle ${textVisible ? "fade-in delay-3" : ""}`}>

@@ -15,6 +15,17 @@ body {
   overflow-x: hidden;
 }
 
+#hSpan {
+font-family: 'Emotion';
+}
+
+#Mission {
+  font-family: 'Emotion';
+}
+
+#Underline {
+  text-decoration: underline;
+}
 .home-container {
   display: flex;
   flex-direction: column;
@@ -62,6 +73,9 @@ body {
 .text {
   margin: 0 10px;
   position: relative;
+  color: rgb(207, 187, 127);
+  text-shadow: 0 0 10px rgb(0, 0, 0);
+  
 }
 
 .overlay {
@@ -118,7 +132,7 @@ body {
 
 @keyframes moveLeft {
   to {
-    transform: translateX(-150px);
+    transform: translateX(-100px);
   }
 }
 
@@ -155,106 +169,6 @@ body {
   }
 }
 
-/* Card Stack */
-.card-stack {
-  position: relative;
-  width: 60vw;
-  max-width: 300px;
-  height: calc(60vw * 1.3);
-  max-height: 400px;
-  margin-top: -30vh;
-  z-index: 5;
-}
-
-.card {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.7);
-  top: -150vh;
-  left: 50%;
-  transform: translateX(-50%) rotate(var(--initial-rotation));
-}
-
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Initial Rotations */
-.card-1 {
-  --initial-rotation: 10deg;
-  --start-rotation: 10deg;
-  --end-rotation: -10deg;
-  --start-zindex: 3;
-  --end-zindex: 1;
-}
-
-.card-2 {
-  --initial-rotation: 0deg;
-  --start-rotation: 0deg;
-  --end-rotation: 10deg;
-  --start-zindex: 2;
-  --end-zindex: 3;
-}
-
-.card-3 {
-  --initial-rotation: -10deg;
-  --start-rotation: -10deg;
-  --end-rotation: 0deg;
-  --start-zindex: 1;
-  --end-zindex: 2;
-}
-
-/* Drop-in Animations */
-.card-stack.drop-in .card-1 {
-  animation: dropIn 0.8s forwards, cardShuffle 9s infinite;
-  animation-delay: 0s, 1s;
-  animation-timing-function: ease-in-out;
-}
-
-.card-stack.drop-in .card-2 {
-  animation: dropIn 0.8s forwards, cardShuffle 9s infinite;
-  animation-delay: 0.1s, 4s;
-  animation-timing-function: ease-in-out;
-}
-
-.card-stack.drop-in .card-3 {
-  animation: dropIn 0.8s forwards, cardShuffle 9s infinite;
-  animation-delay: 0.2s, 7s;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes dropIn {
-  to {
-    top: -10vh;
-  }
-}
-
-/* Card Shuffle Animation */
-@keyframes cardShuffle {
-  0% {
-    transform: translateX(-50%) rotate(var(--start-rotation));
-  }
-  5% {
-    transform: translateX(-170%) rotate(var(--start-rotation)); /* Move farther left */
-  }
-  10% {
-    z-index: var(--end-zindex); /* Change z-index after moving out */
-  }
-  9% {
-    transform: translateX(-150%) rotate(var(--start-rotation));
-  }
-  20% {
-    transform: translateX(-50%) rotate(var(--end-rotation));
-  }
-  100% {
-    transform: translateX(-50%) rotate(var(--end-rotation));
-  }
-}
 
 /* Prevent Words from Getting Cut Off */
 .title-line,
@@ -263,14 +177,21 @@ body {
 }
 
 .overlapping-cards-container {
-  width: 100%;
-  height: 400px; /* Adjust as needed */
   position: relative;
   top: -40%;
   z-index: 1;
 }
 
-
+.cardElement {
+  position: absolute;
+  width: 270px; /* Default width */
+  height: 370px; /* Default height */
+  background-size: cover;
+  background-position: center center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
@@ -279,6 +200,13 @@ body {
   .move-apart .text:nth-child(2) {
     animation: none;
     transform: none;
+  }
+
+  .cardElement {
+    top: 75px;
+    z-index: 1;
+    height: 200px;
+    width: 150px;
   }
 
   /* Only the second line of words moves downwards */
