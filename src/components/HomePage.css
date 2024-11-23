@@ -19,19 +19,25 @@ body {
 font-family: 'Emotion';
 }
 
-#Mission {
+#Hive {
+  font-family: 'Emotion';
+}
+
+
+
+#Mission {  
   font-family: 'Emotion';
 }
 
 #Underline {
   text-decoration: underline;
 }
+
 .home-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  overflow: hidden;
   height: 100vh;
 }
 
@@ -170,6 +176,31 @@ font-family: 'Emotion';
 }
 
 
+.scroll-section {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.split-text-section {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.split-text img {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+.subtitle {
+  margin-top: 20px;
+  color: #fff;
+}
+
+
 /* Prevent Words from Getting Cut Off */
 .title-line,
 .text-line {
@@ -202,9 +233,13 @@ font-family: 'Emotion';
     transform: none;
   }
 
+  #App {
+    z-index: -1;
+  }
+
   .cardElement {
     top: 75px;
-    z-index: 1;
+    z-index: 5;
     height: 200px;
     width: 150px;
   }
@@ -246,7 +281,7 @@ font-family: 'Emotion';
 
   /* Adjust subtitle */
   .subtitle {
-    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    font-size: 1rem;
     bottom: 20px;
     max-width: 90%;
   }

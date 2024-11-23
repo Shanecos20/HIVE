@@ -78,16 +78,82 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh; /* Ensure it fills the full viewport height */
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-100%);
   transition: transform 0.5s ease, opacity 0.5s ease;
+  backdrop-filter: blur(8px);
 }
+
+
+/* Quick links container */
+.navbar-quick-links {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 15px; /* Space between quick links */
+}
+
+/* Quick link styling */
+.navbar-quick-links a {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8); /* Slightly darker white */
+  text-decoration: none;
+  font-family: 'CustomFont', sans-serif;
+  position: relative;
+  display: inline-block;
+  overflow: hidden; /* Hide overflowing text */
+  height: 1em; /* Matches text size to clip overflow */
+  line-height: 1em; /* Prevent height variations */
+}
+
+/* Hover animation */
+.navbar-quick-links a:hover {
+  color: #ffffff; /* Pure white on hover */
+}
+
+.navbar-quick-links a span {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  animation: none;
+  transition: transform 0.3s ease;
+}
+
+.navbar-quick-links a:hover span {
+  animation: portalEffect 0.6s ease-in-out forwards;
+  color: #b59d70;
+}
+
+/*nav bar on click pulse */
+.navbar-quick-links a:active {
+  transform: scale(0.9);
+  transition: transform 0.1s;
+  
+}
+
+/* Keyframes for the portal effect */
+@keyframes portalEffect {
+  0% {
+    transform: translateY(0); /* Start at the center */
+  }
+  50% {
+    transform: translateY(-100%); /* Move up and out of view */
+  }
+  51% {
+    transform: translateY(100%); /* Reappear at the bottom */
+  }
+  100% {
+    transform: translateY(0); /* Return to the center */
+  }
+}
+
 
 .overlay.slide-down {
   opacity: 1;
@@ -120,7 +186,7 @@
 }
 
 .overlay-menu li a:hover {
-  color: #FFA500;
+  color: #947948;
 }
 
 /* Responsive adjustments */
@@ -154,3 +220,4 @@
   filter: blur(8px);
   transition: filter 0.3s ease;
 }
+

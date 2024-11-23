@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar"; // Adjust the import as needed
 import "./HomePage.css";
 import bee1vid from "../media/bee1.mp4";
 import bee2vid from "../media/bee2.mp4";
@@ -8,6 +7,10 @@ import bee4vid from "../media/bee4.mp4";
 import { motion } from "framer-motion";
 
 const HomePage = () => {
+  // Configurable delay variables
+  const initialDropDelay = 2000; // 2 seconds before drop-in starts
+  const staggerDelay = 200; // 0.2 seconds between each card's drop-in
+
   // State for text animations
   const [textVisible, setTextVisible] = useState(false);
   const [cardsVisible, setCardsVisible] = useState(false);
@@ -17,10 +20,30 @@ const HomePage = () => {
 
   // Initial cards setup for overlapping cards
   const initialCards = [
-    { id: 1, video: bee1vid, zIndex: 1004, rotation: Math.random() * 20 - 10 },
-    { id: 2, video: bee2vid, zIndex: 1003, rotation: Math.random() * 20 - 10 },
-    { id: 3, video: bee3vid, zIndex: 1002, rotation: Math.random() * 20 - 10 },
-    { id: 4, video: bee4vid, zIndex: 1001, rotation: Math.random() * 20 - 10 },
+    {
+      id: 1,
+      video: bee1vid,
+      zIndex: 1004,
+      rotation: Math.random() * 20 - 10,
+    },
+    {
+      id: 2,
+      video: bee2vid,
+      zIndex: 1003,
+      rotation: Math.random() * 20 - 10,
+    },
+    {
+      id: 3,
+      video: bee3vid,
+      zIndex: 1002,
+      rotation: Math.random() * 20 - 10,
+    },
+    {
+      id: 4,
+      video: bee4vid,
+      zIndex: 1001,
+      rotation: Math.random() * 20 - 10,
+    },
   ];
 
   const [cards, setCards] = useState(initialCards);
@@ -31,24 +54,32 @@ const HomePage = () => {
   // Text and card visibility effects
   useEffect(() => {
     const textTimeout = setTimeout(() => setTextVisible(true), 500);
-    const cardsTimeout = setTimeout(() => setCardsVisible(true), 2000);
+    const cardsTimeout = setTimeout(
+      () => setCardsVisible(true),
+      initialDropDelay
+    );
 
     return () => {
       clearTimeout(textTimeout);
       clearTimeout(cardsTimeout);
     };
-  }, []);
+  }, [initialDropDelay]);
 
-  // Delay the drop-down animation by a few seconds (e.g., 3 seconds after cards become visible)
+  // Calculate and set startAnimation after initial drop-in animations complete
   useEffect(() => {
     if (cardsVisible) {
+      // Total time = (staggerDelay * (number of cards - 1)) + animationDuration
+      const animationDuration = 1000; // 1 second for each card's drop-in
+      const totalInitialAnimationTime =
+        staggerDelay * (cards.length - 1) + animationDuration;
+
       const animationTimeout = setTimeout(() => {
         setStartAnimation(true);
-      }, 0); // Adjust this value to increase/decrease delay
+      }, totalInitialAnimationTime);
 
       return () => clearTimeout(animationTimeout);
     }
-  }, [cardsVisible]);
+  }, [cardsVisible, staggerDelay, cards.length]);
 
   // Schedule card movements with delays
   useEffect(() => {
@@ -98,7 +129,7 @@ const HomePage = () => {
       x: 0,
       rotate: custom * 10,
       transition: {
-        delay: custom * 0.1,
+        delay: (staggerDelay / 1000) * custom, // Convert ms to seconds
         duration: 1,
         ease: "easeInOut",
       },
@@ -113,31 +144,44 @@ const HomePage = () => {
         transition: { duration: 1, ease: "easeInOut" },
       };
     },
+    returnToCenter: (custom) => ({
+      x: 0,
+      y: 0,
+      rotate: custom * 10,
+      transition: { duration: 1, ease: "easeInOut" }, // No delay
+    }),
   };
 
   return (
     <div className="home-container">
-      <Navbar />
       <div className="title-section">
         <h1
-          className={`title-line ${
-            textVisible ? "unveil" : ""
-          } ${cardsVisible ? "move-apart" : ""}`}
+          className={`title-line ${textVisible ? "unveil" : ""} ${
+            cardsVisible ? "move-apart" : ""
+          }`}
         >
           <div className="text-line">
-            <span className="text" id="HIVE"><span id="hSpan">H</span>IVE</span>
-            <span className="text text2">APP</span>
+            <span className="text" id="Hive">
+              <span id="hSpan">H</span>IVE
+            </span>
+            <span className="text" id="App">
+              APP
+            </span>
             <div className="overlay"></div>
           </div>
         </h1>
         <h1
-          className={`title-line ${
-            textVisible ? "unveil delay-1" : ""
-          } ${cardsVisible ? "move-apart" : ""}`}
+          className={`title-line ${textVisible ? "unveil delay-1" : ""} ${
+            cardsVisible ? "move-apart" : ""
+          }`}
         >
           <div className="text-line">
-            <span className="text text1">IS <span id="Underline">OUR</span></span>
-            <span className="text" id="Mission">MISSION</span>
+            <span className="text text1">
+              IS <span id="Underline">OUR</span>
+            </span>
+            <span className="text" id="Mission">
+              MISSION
+            </span>
             <div className="overlay"></div>
           </div>
         </h1>
@@ -171,6 +215,8 @@ const HomePage = () => {
               animatedCardIds.includes(card.id)
                 ? "moveLeft"
                 : startAnimation
+                ? "returnToCenter"
+                : cardsVisible
                 ? "visible"
                 : "hidden"
             }
