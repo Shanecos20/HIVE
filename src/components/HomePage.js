@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./HomePage.css";
 import bee1vid from "../media/bee1.mp4";
 import bee2vid from "../media/bee2.mp4";
-import bee3vid from "../media/bee3.mp4";
-import bee4vid from "../media/bee4.mp4";
+import bee3vid from "../media/bee5.mp4";
+import bee4vid from "../media/bee6.mp4";
 import { motion } from "framer-motion";
+import AnimatedParagraph from "./AnimatedParagraph";
+import Footer from "./Footer";
+import HoriScroll from "./HoriScroll";
+import AnimatedCircle from "./AnimatedCircle";
+import HiveApp from "./HiveApp";
+import AnimatedContentSection from "./AnimatedContentSection";
 
 const HomePage = () => {
   // Configurable delay variables
@@ -50,6 +56,9 @@ const HomePage = () => {
 
   // State to track which cards have started moving
   const [animatedCardIds, setAnimatedCardIds] = useState([]);
+
+  // Refs for video elements
+  const videoRefs = useRef([]);
 
   // Text and card visibility effects
   useEffect(() => {
@@ -141,16 +150,43 @@ const HomePage = () => {
         x: moveDistance,
         y: 0,
         rotate: custom * 10,
-        transition: { duration: 1, ease: "easeInOut" },
+        transition: { duration: 0.3, ease: "easeInOut" },
+        //dark filter
+        filter: "brightness(0.5)",
       };
     },
     returnToCenter: (custom) => ({
       x: 0,
       y: 0,
       rotate: custom * 10,
-      transition: { duration: 1, ease: "easeInOut" }, // No delay
+      transition: { duration: 0.3, ease: "easeInOut" }, // No delay
+      //dark filter
+      filter: "brightness(1)",
     }),
   };
+
+  // Control video playback based on card order
+  useEffect(() => {
+    if (videoRefs.current.length === 0) return;
+
+    // Determine the frontmost card based on the first element in the array
+    const frontCardIndex = 0;
+
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        if (index === frontCardIndex) {
+          // Play the frontmost video
+          video.play().catch((error) => {
+            // Handle play promise rejection (e.g., autoplay restrictions)
+            console.error("Error playing video:", error);
+          });
+        } else {
+          // Pause all other videos
+          video.pause();
+        }
+      }
+    });
+  }, [cards]);
 
   return (
     <div className="home-container">
@@ -227,16 +263,13 @@ const HomePage = () => {
             }}
           >
             <video
+              ref={(el) => (videoRefs.current[index] = el)} // Assign ref here
               src={card.video}
-              autoPlay
               muted
               loop
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "8px",
-              }}
+              className="card-image"
+              loading="lazy" // Lazy loading for performance
+              // Removed autoPlay to control via refs
             />
           </motion.div>
         ))}
@@ -245,6 +278,18 @@ const HomePage = () => {
         Discover new communities, engage with people, and build connections like
         never before.
       </p>
+
+      <section className="new-section" id="aboutSec">
+        <AnimatedContentSection />
+      </section>
+
+      <section className="new-section" id="CTASec">
+        <HiveApp />
+      </section>
+
+      <section className="new-section" id="footer">
+        <Footer />
+      </section>
     </div>
   );
 };

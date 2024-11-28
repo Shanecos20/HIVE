@@ -1,0 +1,98 @@
+/* HoriScroll.css */
+
+.hs-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Will be dynamically updated via JavaScript */
+  overflow: hidden;
+}
+
+.hs-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  will-change: transform; /* Performance optimization */
+  flex-wrap: nowrap; /* Ensure horizontal alignment */
+  transform: translateX(0);
+}
+
+.hs-card {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 70vh;
+  margin-right: 100px; /* Separation between cards */
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hs-card:last-child {
+  margin-right: 0; /* Remove margin-right from the last card */
+}
+
+/* Hover Effects */
+.hs-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Unique styles for each card */
+.hs-card-1 {
+  background-color: #ff6b6b;
+}
+
+.hs-card-2 {
+  background-color: #feca57;
+}
+
+.hs-card-3 {
+  background-color: #1dd1a1;
+}
+
+.hs-card-4 {
+  background-color: #54a0ff;
+}
+
+.hs-card-5 {
+  background-color: #5f27cd;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .hs-card {
+    width: 250px;
+    height: 60vh;
+    margin-right: 80px;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hs-card {
+    width: 220px;
+    height: 55vh;
+    margin-right: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hs-card {
+    width: 180px;
+    height: 50vh;
+    margin-right: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Accessibility: Focus Styles */
+.hs-card:focus {
+  outline: 3px solid #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
