@@ -53,6 +53,7 @@
   align-items: center;
 }
 
+
 .burger .bar {
   width: 25px;
   height: 3px;
@@ -99,6 +100,7 @@
   margin-left: auto;
   margin-right: auto;
   gap: 15px; /* Space between quick links */
+
 }
 
 /* Quick link styling */
@@ -106,7 +108,7 @@
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.8); /* Slightly darker white */
   text-decoration: none;
-  font-family: 'CustomFont', sans-serif;
+  font-family: 'Parkinsans', sans-serif;
   position: relative;
   display: inline-block;
   overflow: hidden; /* Hide overflowing text */
@@ -221,4 +223,6 @@
   filter: blur(8px);
   transition: filter 0.3s ease;
 }
+
+
 

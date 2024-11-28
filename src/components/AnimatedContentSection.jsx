@@ -1,5 +1,5 @@
 // AnimatedContentSection.jsx
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './AnimatedContentSection.css';
 
@@ -17,128 +17,76 @@ const contentData = [
     image: '/assets/another-bee.gif', // Ensure the path is correct
     mask: '/assets/another-ink-splatter.png', // Ensure the path is correct
   },
+  {
+    title: 'Third Section',
+    text: 'This is the third section of the content.',
+    image: '/assets/yet-another-bee.gif', // Ensure the path is correct
+    mask: '/assets/yet-another-ink-splatter.png', // Ensure the path is correct
+  }
   // Add more sections as needed
 ];
 
-// Utility function to clamp values within a range
-const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-
 const AnimatedContentSection = () => {
-  const containerRef = useRef(null);
-  const [isFixed, setIsFixed] = useState(false);
-  const [currentSection, setCurrentSection] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [fixStart, setFixStart] = useState(0); // Records scroll position when fixed
-  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const [currentSection, setCurrentSection] = useState(-1); // Initialize to -1
 
-  // Update viewportHeight on window resize
   useEffect(() => {
-    const handleResize = () => {
-      setViewportHeight(window.innerHeight);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const triggers = document.querySelectorAll('.trigger');
 
-  // Intersection Observer to detect when the component enters the viewport
-  useEffect(() => {
-    const observerOptions = {
-      root: null, // Observes relative to the viewport
+    const options = {
+      root: null,
       rootMargin: '0px',
-      threshold: 0.1, // 10% of the component is visible
+      threshold: 0.6, // Adjust threshold as needed
     };
 
-    const observerCallback = (entries) => {
+    const callback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          // Delay fixing to allow animations to play
-          setTimeout(() => {
-            if (containerRef.current) {
-              // Calculate the exact scroll position where the component becomes fixed
-              const containerTop = containerRef.current.getBoundingClientRect().top + window.scrollY;
-              setFixStart(containerTop); // Record the fix start position without offset
+        if (entry.isIntersecting) {
+          const triggerId = entry.target.id;
+          console.log(`Triggered: ${triggerId}`);
+
+          // Extract the section number from trigger ID
+          const sectionNumber = parseInt(triggerId.split('-')[1], 10) - 1; // Assuming triggers are 1-indexed
+
+          if (!isNaN(sectionNumber)) {
+            if (triggerId === 'trigger-4') {
+              setCurrentSection(-1); // Unfix content
+              console.log('Unfixing content.');
+            } else if (sectionNumber >= 0 && sectionNumber < contentData.length) {
+              setCurrentSection(sectionNumber);
+              console.log(`Setting currentSection to: ${sectionNumber}`);
             }
-            setIsFixed(true); // Fix the component
-          }, 500); // Adjust delay as needed to allow animations
+          }
         }
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    const observer = new IntersectionObserver(callback, options);
 
+    triggers.forEach((trigger) => {
+      observer.observe(trigger);
+      console.log(`Observing trigger: ${trigger.id}`);
+    });
+
+    // Cleanup
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
+      triggers.forEach((trigger) => {
+        observer.unobserve(trigger);
+        console.log(`Unobserving trigger: ${trigger.id}`);
+      });
     };
-  }, [hasAnimated]);
-
-  // Scroll handler to update currentSection and unfix the component
-  useEffect(() => {
-    if (!isFixed) return;
-
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-
-      const fixedScrollHeight = 0.8 * viewportHeight * contentData.length; // Total scroll distance while fixed
-
-      const scrolled = window.scrollY - fixStart; // Distance scrolled since component was fixed
-
-      const scrollProgress = clamp(scrolled / fixedScrollHeight, 0, 1); // Progress between 0 and 1
-
-      const newSection = Math.floor(scrollProgress * contentData.length);
-      const clampedSection = clamp(newSection, 0, contentData.length - 1);
-
-      if (clampedSection !== currentSection) {
-        setCurrentSection(clampedSection);
-      }
-
-      // Debugging logs
-      console.log('Scrolled:', scrolled);
-      console.log('Fixed Scroll Height:', fixedScrollHeight);
-      console.log('Scroll Progress:', scrollProgress);
-      console.log('Current Section:', clampedSection);
-
-      // Unfix the component after scrolling through all content sections
-      if (scrollProgress >= 1) {
-        setIsFixed(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check in case user is already scrolled
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isFixed, currentSection, fixStart, viewportHeight]);
+  }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="animated-content-section"
-      style={{ height: `${contentData.length * 80 + 20}vh` }} // 80vh per section + 20vh buffer
-    >
-      {/* Placeholder to maintain layout when fixed */}
-      <div
-        className={`placeholder ${isFixed ? 'active' : ''}`}
-        style={{
-          height: isFixed ? '80vh' : '0', // Ensure placeholder matches fixed content height
-        }}
-      ></div>
-
-      {/* Fixed content */}
+    <div className="animated-content-section">
+      {/* Fixed Content */}
       <AnimatePresence>
-        {isFixed && (
+        {currentSection >= 0 && (
           <motion.div
+            key={`content-${currentSection}`}
             className="fixed-content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.5 }}
           >
             {/* Title Animation */}

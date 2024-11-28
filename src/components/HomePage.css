@@ -231,6 +231,28 @@ margin-top: -175px;
   overflow: hidden;
 }
 
+/* App.css or HomePage.css */
+
+#trigger-1 {
+  margin-top: 1000px;
+}
+
+#trigger-2 {
+  margin-top: 1500px;
+}
+
+#trigger-3 {
+  margin-top: 2000px;
+}
+
+#trigger-4 {
+  margin-top: 2500px;
+}
+
+
+
+/* Remove or comment out the visibility: hidden; property */
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   /* On small devices, words shouldn't move left or right */

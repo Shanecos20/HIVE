@@ -282,6 +282,16 @@ const HomePage = () => {
       <section className="new-section" id="aboutSec">
         <AnimatedContentSection />
       </section>
+      {/* Spacer to push triggers below the initial viewport */}
+
+      {/* Trigger Sections */}
+      {/* Each trigger corresponds to a content section */}
+      <div className="trigger" id="trigger-1"></div>
+      <div className="trigger" id="trigger-2"></div>
+      <div className="trigger" id="trigger-3"></div>
+      <div className="trigger" id="trigger-4"></div> {/* New trigger to unfix content */}
+
+      {/* Add more triggers as needed */}
 
       <section className="new-section" id="CTASec">
         <HiveApp />
