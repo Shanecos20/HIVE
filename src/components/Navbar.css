@@ -19,6 +19,7 @@
   z-index: 1000;
   display: flex;
   align-items: center;
+  
 }
 
 /* About link styling */
@@ -127,7 +128,7 @@
 }
 
 .navbar-quick-links a:hover span {
-  animation: portalEffect 0.6s ease-in-out forwards;
+  animation: portalEffect 0.3s ease-in-out forwards;
   color: #b59d70;
 }
 

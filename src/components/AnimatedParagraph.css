@@ -1,0 +1,201 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Apply box-sizing globally */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Container styling */
+.animated-paragraph-container {
+  text-align: center;
+  padding: 50px 20px;
+  width: 100%; /* Full width */
+  margin: 0 auto; /* Center the container */
+  overflow: hidden; /* Prevent overflow when cards expand */
+  background-color: #000000; /* Dark background for better contrast */
+}
+
+/* Paragraph styling */
+.animated-paragraph {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
+  justify-content: center; /* Center items horizontally */
+  align-items: center;
+  font-size: 2em; /* Base font size */
+  color: rgb(181, 159, 103);
+  line-height: 1.2;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif; /* Applied custom font */
+  position: relative;
+  overflow-y: visible;
+
+}
+
+/* Word styling */
+.word {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap; /* Keep individual words from breaking */
+  font-size: 5em; /* Adjusted for better fit */
+  margin: 0 5px; /* Reduced spacing between words */
+  line-height: 1;
+  will-change: transform, opacity; /* Hint for browser optimizations */
+  transform: translateZ(0); /* Promote to own layer */
+  font-weight: bold; /* Bold font weight */
+  z-index: 99;
+}
+
+/* Overlay effect on words */
+.word::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.918);
+  transform: translateX(0);
+  transition: transform 1s ease-out, opacity 3s ease-out;
+  pointer-events: none;
+  z-index: 1; /* Ensure overlay is above text */
+}
+
+/* Reveal animation */
+.word.reveal::before {
+  transform: translateX(100%);
+  opacity: 0; /* Fade out the overlay */
+}
+
+/* Card container styling */
+.card-container {
+  position: relative;
+  display: inline-block;
+  width: 100px; /* Adjusted width for better fit */
+  height: 70px; /* Adjusted height */
+  margin: 0 5px; /* Reduced spacing around the card */
+  overflow: visible;
+  will-change: transform, opacity; /* Hint for browser optimizations */
+  transform: translateZ(0); /* Promote to own layer */
+}
+
+/* Card styling */
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0) translateY(20px); /* Start slightly below */
+  opacity: 0; /* Start invisible */
+  background: rgba(255, 255, 255, 0);
+  color: black;
+  padding: 0; /* Removed padding to allow image to fill the card */
+  border-radius: 8px; /* Reduced rounded corners */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Minimal shadow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Combined transitions */
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent overflow */
+  will-change: transform, opacity; /* Hint for browser optimizations */
+  transform: translateZ(0); /* Promote to own layer */
+}
+
+/* Card image styling */
+.card-image {
+  width: 100%; /* Full width of the card */
+  height: 100%; /* Full height of the card */
+  object-fit: cover; /* Ensure the image covers the entire card without distortion */
+  border-radius: 8px; /* Match card's rounded corners */
+  display: block;
+}
+
+/* Card content reveal */
+.card-container.expand .card {
+  transform: translate(-50%, -50%) scale(1) translateY(0); /* Scale up and move to original position */
+  opacity: 1; /* Fade in */
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .animated-paragraph {
+    font-size: 1.8em;
+  }
+
+  .word {
+    font-size: 2.5em;
+    margin: 0 4px;
+  }
+
+  .card-container {
+    width: 90px;
+    height: 60px;
+  }
+
+  .card {
+    border-radius: 10px; /* Adjust border radius for smaller cards */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slightly increased shadow for smaller cards */
+  }
+
+  .card-image {
+    border-radius: 10px; /* Match card's rounded corners */
+  }
+}
+
+@media (max-width: 900px) {
+  .animated-paragraph {
+    font-size: 1.5em;
+  }
+
+  .word {
+    font-size: 2em;
+    margin: 0 3px;
+  }
+
+  .card-container {
+    width: 80px;
+    height: 50px;
+  }
+
+  .card {
+    border-radius: 8px; /* Further reduction for smaller cards */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Reduced shadow */
+  }
+
+  .card-image {
+    border-radius: 8px; /* Match card's rounded corners */
+  }
+}
+
+@media (max-width: 600px) {
+  .animated-paragraph {
+    font-size: 1.2em;
+  }
+
+  .word {
+    font-size: 2em; /* Further reduced font size */
+    margin: 0 2px;
+  }
+
+  .animated-paragraph-container {
+    width: 100%; /* Ensure full width on small devices */
+  }
+
+  .card-container {
+    width: 70px;
+    height: 40px;
+  }
+
+  .card {
+    border-radius: 6px; /* Adjust border radius for smallest cards */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03); /* Minimal shadow */
+  }
+
+  .card-image {
+    border-radius: 6px; /* Match card's rounded corners */
+  }
+}

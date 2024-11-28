@@ -1,0 +1,142 @@
+/* src/components/AnimatedCircle/AnimatedCircle.css */
+
+/* Container for the entire component */
+.animated-circle-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Styling for corner texts "HIVE" and "APP" */
+  .corner-text {
+    position: absolute;
+    color: rgb(46, 44, 42);
+    font-family: 'Emotion', sans-serif;
+    font-weight: bolder;
+    opacity: 0;
+    font-size: 200px;
+
+  }
+  
+  .corner-text--hive {
+    top: 20px;
+    left: 20px;
+    z-index: 2; /* Ensure it's above the central circle */
+  }
+  
+  .corner-text--app {
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+  }
+  
+  /* Wrapper for the central circle and rotating text */
+  .circle-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  
+  /* Rotating SVG */
+  .rotating-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+  }
+  
+  /* Outer Rotating Text Styling */
+  .outer-text-path {
+    fill: none;
+    stroke: none;
+    font-size: 24px;
+    fill: #cfbb7f;
+    font-family: 'Emotions', sans-serif;
+  }
+  
+  /* Inner Text Styling */
+  .inner-text-path {
+    fill: none;
+    stroke: none;
+    font-size: 20px;
+    fill: #cfbb7f;
+    font-family: 'Emotions', sans-serif;
+  }
+  
+  .inner-text-path--download {
+    text-anchor: middle;
+  }
+  
+  .inner-text-path--now {
+    text-anchor: middle;
+  }
+  
+  /* Central Circle Styling */
+  .central-circle {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #cfbb7f;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    z-index: 3; /* Above rotating text */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 800px) {
+    .circle-wrapper {
+      width: 300px;
+      height: 300px;
+    }
+  
+    .central-circle {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .corner-text--hive,
+    .corner-text--app {
+      font-size: 70px;
+    }
+  
+    .outer-text-path {
+      font-size: 18px;
+    }
+  
+    .inner-text-path {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .circle-wrapper {
+      width: 250px;
+      height: 250px;
+    }
+  
+    .central-circle {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .corner-text--hive,
+    .corner-text--app {
+      font-size: 110px;
+    }
+  
+    .outer-text-path {
+      font-size: 23px;
+    }
+  
+    .inner-text-path {
+      font-size: 20px;
+    }
+  }
+  

@@ -1,0 +1,169 @@
+/* src/HiveApp.css */
+
+.hive-app-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevent words from appearing outside */
+}
+
+.hive-app-words {
+  position: relative;
+  text-align: center;
+  z-index: 1; /* Ensure words are above the background */
+  font-family: "Emotion", sans-serif;
+}
+
+.hive {
+  font-size: 9rem; /* Adjusted font size */
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 1s ease-in-out;
+  color: #bd8e5f; /* White color for visibility */
+}
+
+.app {
+  font-size: 9rem; /* Adjusted font size */
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  transition: transform 1s ease-in-out;
+  color: #c19a60; /* White color for visibility */
+  z-index: 30;
+}
+
+.hive-app-words.animate .hive {
+  transform: translateX(-120px); /* Movement when animated */
+}
+
+.hive-app-words.animate .app {
+  transform: translateX(30px); /* Movement when animated */
+}
+
+/* Styling for individual letters */
+#H,
+#A {
+  color: #cfbb7f;
+  /* You can add rotation or other effects here */
+}
+
+/* Download Now Text Styling */
+.download-text {
+  position: absolute;
+  top: -190px; /* Position above the APP text */
+  right: 220px; /* Position to the right of the APP text */
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  animation: throb 1.5s infinite;
+  /* rotate text slightly */
+  transform: rotate(-5deg);
+}
+
+.download-text span {
+  color: rgb(180, 155, 93);
+  font-weight: bolder;
+  font-size: 2rem;
+  z-index: 10;
+  font-family: Parkinsans;
+}
+
+/* Throbbing Animation */
+@keyframes throb {
+  0% {
+    transform: rotate(-5deg) scale(1);
+  }
+  50% {
+    transform: rotate(-5deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(-5deg) scale(1);
+  }
+}
+
+.hiveapp-subtitle {
+  margin-top: 55px; /* Adjusted margin */
+  font-size: 1.5rem; /* Adjusted font size */
+  color: #ffffff; /* White color for visibility */
+  font-family: "Parkinsans", sans-serif;
+}
+
+.fade-image {
+  position: absolute;
+  top: 29%; /* Adjusted position */
+  left: 45%;
+  width: 170px; /* Reduced size */
+  height: 170px; /* Reduced size */
+  object-fit: cover;
+  border-radius: 15px; /* Adjusted border radius */
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 2s ease, transform 1s ease;
+  z-index: 11;
+  /* rotate image slightly */
+  transform: rotate(5deg);
+}
+
+.fade-image.visible {
+  opacity: 1;
+}
+
+.hiveapp-subtitle-container {
+  top: 40px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .hive {
+    font-size: 6rem;
+  }
+
+  .app {
+    font-size: 6rem;
+  }
+
+  .fade-image {
+    width: 150px;
+    height: 150px;
+    left: 30%;
+    top: 155px;
+  }
+
+  .download-text {
+    top: -30px;
+    right: -10px;
+    padding: 6px 12px;
+  }
+
+  .hiveapp-subtitle-container {
+    margin-top: 80px;
+  }
+
+  .hiveapp-subtitle {
+    margin-top: 15px; /* Adjusted margin */
+    font-size: 1.5rem; /* Adjusted font size */
+    color: #ffffff; /* White color for visibility */
+    font-family: "Parkinsans", sans-serif;
+    margin-top: 50px;
+  }
+
+  .download-text {
+    opacity: 0;
+  }
+
+  .hive-app-words.animate .hive {
+    transform: translateX(0); /* Movement when animated */
+    transform: translateY(-70px); /* Movement when animated */
+  }
+
+  .hive-app-words.animate .app {
+    transform: translateX(10px); /* Movement when animated */
+    transform: translateY(35px); /* Movement when animated */
+  }
+}

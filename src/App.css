@@ -6,7 +6,7 @@
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Parkinsans', sans-serif;
   background-color: #000000;
   color: #F4F1E3;
 }
@@ -25,3 +25,27 @@ a {
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Parkinsans';
+  src: url('./fonts/Parkinsans-VariableFont_wght.ttf') format('truetype'); /* Adjust format as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Melody';
+  src: url('./fonts/demomelodygroove-maj9p.otf') format('opentype'); /* Adjust format as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
+  /*hidden scrollbar*/
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+

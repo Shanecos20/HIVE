@@ -79,7 +79,7 @@ font-family: 'Emotion';
 .text {
   margin: 0 10px;
   position: relative;
-  color: rgb(207, 187, 127);
+  color: #cfbb7f;
   text-shadow: 0 0 10px rgb(0, 0, 0);
   
 }
@@ -138,13 +138,13 @@ font-family: 'Emotion';
 
 @keyframes moveLeft {
   to {
-    transform: translateX(-100px);
+    transform: translateX(-120px);
   }
 }
 
 @keyframes moveRight {
   to {
-    transform: translateX(150px);
+    transform: translateX(100px);
   }
 }
 
@@ -197,10 +197,17 @@ font-family: 'Emotion';
 
 .subtitle {
   margin-top: 20px;
-  color: #fff;
+  color: #FFE7C7;
 }
 
+#CTASec {
+  width: 100%;
+  margin-top: 5000px;
+}
 
+#footer {
+margin-top: -175px;
+}
 /* Prevent Words from Getting Cut Off */
 .title-line,
 .text-line {
@@ -209,7 +216,7 @@ font-family: 'Emotion';
 
 .overlapping-cards-container {
   position: relative;
-  top: -40%;
+  top: -25%;
   z-index: 1;
 }
 
@@ -238,7 +245,7 @@ font-family: 'Emotion';
   }
 
   .cardElement {
-    top: 75px;
+    top: -30px;
     z-index: 5;
     height: 200px;
     width: 150px;
@@ -281,8 +288,56 @@ font-family: 'Emotion';
 
   /* Adjust subtitle */
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.8rem;
     bottom: 20px;
     max-width: 90%;
   }
 }
+
+/* Existing styles */
+
+/* New Section Styles */
+.new-section {
+  padding: 0px; /* Adjust padding as needed */
+  text-align: center; /* Center the text */
+  margin-top: 300px;
+  width: 100%;
+}
+
+.new-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.new-section p {
+  font-size: 1.2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Spacer Div to Add Extra Space Below the New Section */
+.spacer {
+  height: 500px; /* Adjust height to add desired space */
+}
+
+/* Responsive Adjustments (Optional) */
+@media (max-width: 768px) {
+  .new-section {
+    padding: 60px 15px;
+  }
+
+  .new-section h2 {
+    font-size: 2rem;
+  }
+
+  .new-section p {
+    font-size: 1rem;
+  }
+
+  .spacer {
+    height: 300px;
+  }
+}
+
+
