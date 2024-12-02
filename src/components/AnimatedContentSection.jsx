@@ -112,9 +112,25 @@ const BeekeeperAnimation = ({ images }) => (
 const AnimatedContentSection = () => {
   const [currentSection, setCurrentSection] = useState(-1);
   const modeRef = useRef("normal"); // Tracks current mode: 'normal' or 'reverse'
+  const scrollDirectionRef = useRef("down"); // Tracks scroll direction
 
   useEffect(() => {
     const triggers = document.querySelectorAll(".trigger");
+
+    let lastScrollY = window.scrollY;
+
+    // Handle scroll direction
+    const handleScrollDirection = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        scrollDirectionRef.current = "down";
+      } else if (currentScrollY < lastScrollY) {
+        scrollDirectionRef.current = "up";
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScrollDirection);
 
     const options = {
       root: null,
@@ -124,40 +140,50 @@ const AnimatedContentSection = () => {
 
     const callback = (entries) => {
       entries.forEach((entry) => {
+        const triggerId = entry.target.id;
+
         if (entry.isIntersecting) {
-          const triggerId = entry.target.id;
-
-          // Handle mode switching
           if (triggerId === "trigger-0") {
+            // Hero section intersects: set to normal mode and hide content
             modeRef.current = "normal";
-            console.log("Mode set to normal");
+            setCurrentSection(-1);
+            console.log("Mode set to normal and currentSection set to -1");
           } else if (triggerId === "trigger-5") {
-            modeRef.current = "reverse";
-            console.log("Mode set to reverse");
-          }
-
-          const mode = modeRef.current;
-
-          // Map triggers to sections based on mode
-          if (mode === "normal") {
-            if (triggerId === "trigger-1") {
-              setCurrentSection(0);
-            } else if (triggerId === "trigger-2") {
-              setCurrentSection(1);
-            } else if (triggerId === "trigger-3") {
-              setCurrentSection(2);
-            } else if (triggerId === "trigger-4") {
-              setCurrentSection(-1); // Unfix content
+            if (scrollDirectionRef.current === "up") {
+              // Scrolling up and intersecting trigger-5: set to reverse mode
+              modeRef.current = "reverse";
+              console.log("Mode set to reverse");
             }
-          } else if (mode === "reverse") {
-            if (triggerId === "trigger-1") {
-              setCurrentSection(-1); // Fade out first section
-            } else if (triggerId === "trigger-2") {
-              setCurrentSection(0); // Show first section
-            } else if (triggerId === "trigger-3") {
-              setCurrentSection(1); // Show second section
-            } else if (triggerId === "trigger-4") {
-              setCurrentSection(2); // Show third section
+          } else {
+            // Other triggers
+            if (modeRef.current === "normal") {
+              if (triggerId === "trigger-1") {
+                setCurrentSection(0);
+              } else if (triggerId === "trigger-2") {
+                setCurrentSection(1);
+              } else if (triggerId === "trigger-3") {
+                setCurrentSection(2);
+              } else if (triggerId === "trigger-4") {
+                setCurrentSection(-1); // Unfix content
+              }
+            } else if (modeRef.current === "reverse") {
+              if (triggerId === "trigger-1") {
+                setCurrentSection(-1);
+              } else if (triggerId === "trigger-2") {
+                setCurrentSection(0);
+              } else if (triggerId === "trigger-3") {
+                setCurrentSection(1);
+              } else if (triggerId === "trigger-4") {
+                setCurrentSection(2);
+              }
+            }
+          }
+        } else {
+          if (triggerId === "trigger-5") {
+            if (scrollDirectionRef.current === "down") {
+              // Scrolling down and leaving trigger-5: set to normal mode
+              modeRef.current = "normal";
+              console.log("Mode set to normal");
             }
           }
         }
@@ -177,6 +203,7 @@ const AnimatedContentSection = () => {
         observer.unobserve(trigger);
         console.log(`Unobserving trigger: ${trigger.id}`);
       });
+      window.removeEventListener("scroll", handleScrollDirection);
     };
   }, []);
 

@@ -48,8 +48,8 @@ a {
 }
 
 @font-face {
-  font-family: 'Widom';
-  src: url(./fonts/WisdomWordsPersonalUse-r9E9.ttf) format('truetype'); /* Adjust format as needed */
+  font-family: 'Wisdom';
+  src: url('./fonts/WisdomWordsPersonalUse-r9E9.ttf') format('truetype'); /* Adjust format as needed */
   font-weight: normal;
   font-style: normal;
 }

@@ -11,6 +11,7 @@ import HoriScroll from "./HoriScroll";
 import AnimatedCircle from "./AnimatedCircle";
 import HiveApp from "./HiveApp";
 import AnimatedContentSection from "./AnimatedContentSection";
+import SectionSeparator from "./SectionSeperator";
 
 const HomePage = () => {
   // Configurable delay variables
@@ -278,6 +279,9 @@ const HomePage = () => {
         Discover new communities, engage with people, and build connections like
         never before.
       </p>
+      <div className="new-section" id="Seperator1">
+        <SectionSeparator />
+      </div>
       {/* New Trigger before all existing triggers */}
       <div className="trigger" id="trigger-0"></div>{" "}
       {/* Sets mode to 'normal' */}
@@ -296,6 +300,7 @@ const HomePage = () => {
       {/* Sets mode to 'reverse' */}
       {/* Spacer between triggers and next content */}
       <div style={{ height: "100vh" }}></div>
+
       <section className="new-section" id="CTASec">
         <HiveApp />
       </section>
