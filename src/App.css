@@ -40,6 +40,13 @@ a {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Angelos';
+  src: url('./fonts/Angelos.ttf') format('truetype'); /* Adjust format as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
   /*hidden scrollbar*/
 ::-webkit-scrollbar {
   display: none;

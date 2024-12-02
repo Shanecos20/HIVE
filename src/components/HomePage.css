@@ -202,7 +202,7 @@ font-family: 'Emotion';
 
 #CTASec {
   width: 100%;
-  margin-top: 5000px;
+  margin-top: 1500px;
 }
 
 #footer {
@@ -232,21 +232,28 @@ margin-top: -175px;
 }
 
 /* App.css or HomePage.css */
+#trigger-0 {
+  margin-top: 20%;
+}
 
 #trigger-1 {
-  margin-top: 1000px;
+  margin-top: 50%;
 }
 
 #trigger-2 {
-  margin-top: 1500px;
+  margin-top: 60%;
 }
 
 #trigger-3 {
-  margin-top: 2000px;
+  margin-top: 70%;
 }
 
 #trigger-4 {
-  margin-top: 2500px;
+  margin-top: 80%;
+}
+
+#trigger-5 {
+  margin-top: 90%;
 }
 
 

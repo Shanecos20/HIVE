@@ -1,59 +1,165 @@
 // AnimatedContentSection.jsx
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import './AnimatedContentSection.css';
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import "./AnimatedContentSection.css";
 
-// Sample content data
+// AnimatedContentSection.jsx
 const contentData = [
   {
-    title: 'First Section',
-    text: 'This is the first section of the content.',
-    image: '/assets/bee.gif', // Ensure the path is correct
-    mask: '/assets/ink-splatter.png', // Ensure the path is correct
+    title: "What is HIVE",
+    text: `HIVE is an innovative app designed to support beekeepers and modernize the way modular bee hives are managed...`,
+    theme: "flowers",
+    images: [
+      "/media/flower1.png",
+      "/media/flower2.png",
+      "/media/flower3.png",
+      "/media/flower4.png",
+      "/media/flower5.png",
+      "/media/flower6.png",
+    ],
   },
   {
-    title: 'Second Section',
-    text: 'This is the second section of the content.',
-    image: '/assets/another-bee.gif', // Ensure the path is correct
-    mask: '/assets/another-ink-splatter.png', // Ensure the path is correct
+    title: "How Does HIVE Work",
+    text: `HIVE combines modular hive structures with IoT-enabled sensors and trackers...`,
+    theme: "beehives",
+    images: [
+      "/media/beehive1.png",
+      "/media/beehive2.png",
+    ],
   },
   {
-    title: 'Third Section',
-    text: 'This is the third section of the content.',
-    image: '/assets/yet-another-bee.gif', // Ensure the path is correct
-    mask: '/assets/yet-another-ink-splatter.png', // Ensure the path is correct
-  }
-  // Add more sections as needed
+    title: "Why Choose HIVE",
+    text: `With its focus on sustainability and efficiency, HIVE is more than just a tool—it's a game-changer for beekeeping...`,
+    theme: "beekeeper",
+    images: [
+      "/media/beekeeper.png",
+      "/media/bee1.gif",
+      "/media/bee2.gif",
+      "/media/bee3.gif",
+    ],
+  },
 ];
 
+const FlowersAnimation = ({ images }) => (
+  <div className="flowers-container">
+    {images.map((src, index) => (
+      <motion.img
+        key={index}
+        src={src}
+        alt={`flower-${index}`}
+        className="flower"
+        initial={{ scale: 0, y: 50, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        transition={{
+          delay: index * 0.2,
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+        }}
+      />
+    ))}
+  </div>
+);
+
+const BeehivesAnimation = ({ images }) => (
+  <div className="beehives-container">
+    {images.map((src, index) => (
+      <motion.img
+        key={index}
+        src={src}
+        alt={`beehive-${index}`}
+        className={`beehive beehive-${index + 1}`}
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          delay: index * 0.3,
+          type: "spring",
+          stiffness: 50,
+          damping: 10,
+        }}
+      />
+    ))}
+  </div>
+);
+
+const BeekeeperAnimation = ({ images }) => (
+  <div className="beekeeper-container">
+    <motion.img
+      src={images[0]}
+      alt="beekeeper"
+      className="beekeeper"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    />
+    {images.slice(1).map((src, index) => (
+      <motion.img
+        key={index}
+        src={src}
+        alt={`bee-${index}`}
+        className="bee"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: -100, opacity: 1 }}
+        transition={{
+          delay: 0.5 + index * 0.2,
+          duration: 2,
+          repeat: Infinity,
+          repeatType: "loop",
+        }}
+      />
+    ))}
+  </div>
+);
+
 const AnimatedContentSection = () => {
-  const [currentSection, setCurrentSection] = useState(-1); // Initialize to -1
+  const [currentSection, setCurrentSection] = useState(-1);
+  const modeRef = useRef("normal"); // Tracks current mode: 'normal' or 'reverse'
 
   useEffect(() => {
-    const triggers = document.querySelectorAll('.trigger');
+    const triggers = document.querySelectorAll(".trigger");
 
     const options = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.6, // Adjust threshold as needed
+      rootMargin: "0px",
+      threshold: 0.6,
     };
 
     const callback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const triggerId = entry.target.id;
-          console.log(`Triggered: ${triggerId}`);
 
-          // Extract the section number from trigger ID
-          const sectionNumber = parseInt(triggerId.split('-')[1], 10) - 1; // Assuming triggers are 1-indexed
+          // Handle mode switching
+          if (triggerId === "trigger-0") {
+            modeRef.current = "normal";
+            console.log("Mode set to normal");
+          } else if (triggerId === "trigger-5") {
+            modeRef.current = "reverse";
+            console.log("Mode set to reverse");
+          }
 
-          if (!isNaN(sectionNumber)) {
-            if (triggerId === 'trigger-4') {
+          const mode = modeRef.current;
+
+          // Map triggers to sections based on mode
+          if (mode === "normal") {
+            if (triggerId === "trigger-1") {
+              setCurrentSection(0);
+            } else if (triggerId === "trigger-2") {
+              setCurrentSection(1);
+            } else if (triggerId === "trigger-3") {
+              setCurrentSection(2);
+            } else if (triggerId === "trigger-4") {
               setCurrentSection(-1); // Unfix content
-              console.log('Unfixing content.');
-            } else if (sectionNumber >= 0 && sectionNumber < contentData.length) {
-              setCurrentSection(sectionNumber);
-              console.log(`Setting currentSection to: ${sectionNumber}`);
+            }
+          } else if (mode === "reverse") {
+            if (triggerId === "trigger-1") {
+              setCurrentSection(-1); // Fade out first section
+            } else if (triggerId === "trigger-2") {
+              setCurrentSection(0); // Show first section
+            } else if (triggerId === "trigger-3") {
+              setCurrentSection(1); // Show second section
+            } else if (triggerId === "trigger-4") {
+              setCurrentSection(2); // Show third section
             }
           }
         }
@@ -76,6 +182,19 @@ const AnimatedContentSection = () => {
     };
   }, []);
 
+  const renderTheme = (theme, images) => {
+    switch (theme) {
+      case "flowers":
+        return <FlowersAnimation images={images} />;
+      case "beehives":
+        return <BeehivesAnimation images={images} />;
+      case "beekeeper":
+        return <BeekeeperAnimation images={images} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="animated-content-section">
       {/* Fixed Content */}
@@ -84,55 +203,26 @@ const AnimatedContentSection = () => {
           <motion.div
             key={`content-${currentSection}`}
             className="fixed-content"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {/* Title Animation */}
-            <AnimatePresence>
-              <motion.h1
-                key={`title-${currentSection}`}
-                className="section-title"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ type: 'spring', stiffness: 50 }}
-              >
-                {contentData[currentSection].title}
-              </motion.h1>
-            </AnimatePresence>
+            {/* Animated Theme */}
+            {renderTheme(
+              contentData[currentSection].theme,
+              contentData[currentSection].images
+            )}
 
-            {/* Text Animation */}
-            <AnimatePresence>
-              <motion.p
-                key={`text-${currentSection}`}
-                className="section-text"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {contentData[currentSection].text}
-              </motion.p>
-            </AnimatePresence>
+            {/* Title */}
+            <h1 className="section-title">
+              {contentData[currentSection].title}
+            </h1>
 
-            {/* Image Animation */}
-            <AnimatePresence>
-              <motion.div
-                key={`image-${currentSection}`}
-                className="section-image"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                style={{
-                  backgroundImage: `url(${contentData[currentSection].image})`,
-                  WebkitMaskImage: `url(${contentData[currentSection].mask})`,
-                  maskImage: `url(${contentData[currentSection].mask})`,
-                }}
-              />
-            </AnimatePresence>
+            {/* Paragraph */}
+            <p className="section-text">
+              {contentData[currentSection].text}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>

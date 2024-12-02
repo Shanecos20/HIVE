@@ -278,25 +278,27 @@ const HomePage = () => {
         Discover new communities, engage with people, and build connections like
         never before.
       </p>
-
+      {/* New Trigger before all existing triggers */}
+      <div className="trigger" id="trigger-0"></div>{" "}
+      {/* Sets mode to 'normal' */}
+      {/* Animated Content Section Wrapper */}
       <section className="new-section" id="aboutSec">
         <AnimatedContentSection />
       </section>
-      {/* Spacer to push triggers below the initial viewport */}
-
       {/* Trigger Sections */}
-      {/* Each trigger corresponds to a content section */}
       <div className="trigger" id="trigger-1"></div>
       <div className="trigger" id="trigger-2"></div>
       <div className="trigger" id="trigger-3"></div>
-      <div className="trigger" id="trigger-4"></div> {/* New trigger to unfix content */}
-
-      {/* Add more triggers as needed */}
-
+      <div className="trigger" id="trigger-4"></div>{" "}
+      {/* Previously the fade and unfix trigger */}
+      {/* New Trigger after all existing triggers */}
+      <div className="trigger" id="trigger-5"></div>{" "}
+      {/* Sets mode to 'reverse' */}
+      {/* Spacer between triggers and next content */}
+      <div style={{ height: "100vh" }}></div>
       <section className="new-section" id="CTASec">
         <HiveApp />
       </section>
-
       <section className="new-section" id="footer">
         <Footer />
       </section>

@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="navbar-logo">HIVE</div>
         <div className="navbar-quick-links">
           <a href="#story">
-            <span>HiveBook</span>
+            <span>HivE-Book</span>
           </a>
           <a href="#about">
             <span>About Us</span>

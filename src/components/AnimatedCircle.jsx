@@ -25,46 +25,8 @@ const AnimatedCircle = () => {
     },
   };
 
-  const hiveVariants = {
-    hidden: { opacity: 0, x: -150, y: -150 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: { duration: 1.5 },
-    },
-  };
-
-  const appVariants = {
-    hidden: { opacity: 0, x: 150, y: 150 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: { duration: 1.5 },
-    },
-  };
-
   return (
     <div className="animated-circle-container">
-      {/* Animated Corner Texts */}
-      <motion.div
-        className="corner-text corner-text--hive"
-        variants={hiveVariants}
-        initial="hidden"
-        animate={controls}
-      >
-        HIVE
-      </motion.div>
-      <motion.div
-        className="corner-text corner-text--app"
-        variants={appVariants}
-        initial="hidden"
-        animate={controls}
-      >
-        APP
-      </motion.div>
-
       {/* Central Circle with Rotating Text */}
       <motion.div
         ref={ref}
@@ -74,31 +36,31 @@ const AnimatedCircle = () => {
       >
         <motion.svg
           className="rotating-svg"
-          width="400"
-          height="400"
-          viewBox="0 0 400 400"
+          width="300"
+          height="300"
+          viewBox="0 0 300 300"
           variants={outerTextVariants}
           animate="animate"
         >
           <defs>
-            {/* Outer Path: Smaller radius to move closer to circle edge */}
+            {/* Outer Path: Adjusted radius */}
             <path
               id="outerPath"
               d="
-                M 200, 200
-                m -140, 0
-                a 140,140 0 1,1 280,0
-                a 140,140 0 1,1 -280,0
+                M 150, 150
+                m -100, 0
+                a 100,100 0 1,1 200,0
+                a 100,100 0 1,1 -200,0
               "
             />
-            {/* Inner Path: Smaller radius to move inside the central circle */}
+            {/* Inner Path: Adjusted radius */}
             <path
               id="innerPath"
               d="
-                M 200, 200
-                m -70, 0
-                a 70,70 0 1,1 140,0
-                a 70,70 0 1,1 -140,0
+                M 150, 150
+                m -50, 0
+                a 50,50 0 1,1 100,0
+                a 50,50 0 1,1 -100,0
               "
             />
           </defs>
@@ -106,7 +68,7 @@ const AnimatedCircle = () => {
           {/* Outer Rotating Text */}
           <text className="outer-text">
             <textPath href="#outerPath" startOffset="0%" className="outer-text-path">
-              {Array(8).fill(' HIVE APP ').join(' ')}
+              {Array(9).fill(' SCROLL ').join(' ')}
             </textPath>
           </text>
 
@@ -114,17 +76,17 @@ const AnimatedCircle = () => {
           <text className="inner-text">
             <textPath
               href="#innerPath"
-              startOffset="54%" // Centered horizontally
+              startOffset="59%"
               className="inner-text-path inner-text-path--download"
             >
-              DOWNLOAD
+              SCROLL
             </textPath>
             <textPath
               href="#innerPath"
-              startOffset="4%" // Centered horizontally
+              startOffset="10%"
               className="inner-text-path inner-text-path--now"
             >
-              NOW
+              SCROLL
             </textPath>
           </text>
         </motion.svg>
