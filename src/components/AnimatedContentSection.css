@@ -24,55 +24,133 @@
   pointer-events: auto; /* Allow interaction with content inside */
 }
 
-/* Flowers Animation Styling */
-.flowers-container {
-  position: absolute;
-  bottom: 10%;
-  left: 10%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+
 
 .flower {
-  width: 50px;
-  height: 50px;
+  position: absolute;
   object-fit: contain;
+  /* Apply the sway animation */
+  animation: sway 4s ease-in-out infinite;
+}
+
+/* Specific positioning and sizing for each flower */
+.flower-1 {
+  top: 65%;
+  left: 0%;
+  width: 300px;
+  height: 300px;
+  rotate: 20deg;
+  z-index: 106;
+}
+
+.flower-2 {
+  top: 60%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  rotate: 20deg;
+  z-index: 105;
+}
+
+.flower-3 {
+  top: 30%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  z-index: 102;
+}
+
+.flower-4 {
+  top: -30%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  rotate: -150deg;
+  z-index: 107;
+}
+
+.flower-5 {
+  top: 2%;
+  left: -9%;
+  width: 400px;
+  height: 400px;
+  z-index: 100;
+}
+
+.flower-6 {
+  top: -50%;
+  right: -10%;
+  width: 900px;
+  height: 900px;
+  rotate: -120deg;
+  z-index: 104;
+}
+
+/* Keyframes for sway animation */
+@keyframes sway {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+  25% {
+    transform: rotate(2deg) translateX(5px);
+  }
+  50% {
+    transform: rotate(0deg) translateX(0);
+  }
+  75% {
+    transform: rotate(-2deg) translateX(-5px);
+  }
+  100% {
+    transform: rotate(0deg) translateX(0);
+  }
 }
 
 /* Beehives Animation Styling */
-.beehives-container {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+
 
 .beehive {
-  width: 100px;
-  height: 100px;
+  position: absolute;
   object-fit: contain;
+  /* Apply the sway animation */
 }
 
 .beehive-1 {
-  z-index: 1;
+  z-index: 3;
+  left: -5%;
+  top: 30%;
 }
 
 .beehive-2 {
-  z-index: 2;
+  z-index: 4;
+  top: 60%;
+  left: 15%;  
+  width: 300px;
+  height: 300px;
 }
+
+/* animation to make beehives bob up and down infinitely */
+@keyframes bob {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+  
 
 /* Beekeeper Animation Styling */
 .beekeeper-container {
   position: absolute;
-  bottom: 10%;
-  left: 50%;
+  bottom: -60%;
+  left: 20%;
   transform: translateX(-50%);
-  width: 200px;
-  height: 200px;
+  width: 1000px;
+  height: 1000px;
+  z-index: 99;
 }
 
 .beekeeper {
@@ -80,11 +158,14 @@
   height: auto;
 }
 
-.bee {
+.honeycomb {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  top: 20%;
+  left: 60%;
+  width: 50%;
+  height: 50%;
   object-fit: contain;
+  visibility: hidden; /* Hidden by default */
 }
 
 /* Title Styling */
@@ -92,23 +173,23 @@
   position: absolute;
   top: 20%;
   left: 5%;
-  font-size: 3rem; /* Adjusted for better responsiveness */
+  font-size: 6rem; /* Adjusted for better responsiveness */
   font-family: 'Emotion', sans-serif; /* Custom Emotion font */
-  color: #fbf2f2; /* Adjust color as needed */
+  color: #f0c17c; /* Adjust color as needed */
   margin: 0;
   pointer-events: auto;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds depth */
+  z-index: 100; /* Ensures it appears above other content */
 }
 
-/* Paragraph Styling */
 .section-text {
   position: absolute;
   bottom: 5%;
   right: 5%;
-  width: 300px; /* Adjusted for better responsiveness */
+  width: 600px; /* Adjusted for better responsiveness */
   font-size: 1rem; /* Adjusted for better responsiveness */
   text-align: right;
-  color: #e9dddd; /* Adjust color as needed */
+  color: #ffffff; /* Adjust color as needed */
   line-height: 1.6; /* Enhanced readability */
   pointer-events: auto;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Adds depth */
@@ -124,13 +205,50 @@
   .flowers-container {
     bottom: 5%;
     left: 5%;
-    flex-wrap: wrap;
-    gap: 5px;
+    width: 200px; /* Adjust as needed for smaller screens */
+    height: 200px; /* Adjust as needed for smaller screens */
   }
 
-  .flower {
-    width: 30px;
-    height: 30px;
+  .flower-1 {
+    top: 0%;
+    left: 35%;
+    width: 60px;
+    height: 60px;
+  }
+
+  .flower-2 {
+    top: 15%;
+    left: 5%;
+    width: 40px;
+    height: 40px;
+  }
+
+  .flower-3 {
+    top: 30%;
+    left: 45%;
+    width: 50px;
+    height: 50px;
+  }
+
+  .flower-4 {
+    top: 45%;
+    left: 15%;
+    width: 100px;
+    height: 100px;
+  }
+
+  .flower-5 {
+    top: 15%;
+    left: 60%;
+    width: 55px;
+    height: 55px;
+  }
+
+  .flower-6 {
+    top: 35%;
+    left: 70%;
+    width: 45px;
+    height: 45px;
   }
 
   /* Adjust Beehives */
@@ -141,21 +259,18 @@
   }
 
   .beehive {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 80px;
   }
 
   /* Adjust Beekeeper */
   .beekeeper-container {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
   }
 
-  .bee {
-    width: 20px;
-    height: 20px;
-  }
-
+  /* Remove bee positioning since bees are removed */
+  
   /* Adjust Title */
   .section-title {
     font-size: 2rem;
@@ -170,4 +285,18 @@
     right: 5%;
     width: 200px;
   }
+}
+
+/* Optional: Hover Effects */
+.flower:hover {
+  transform: scale(1.1) rotate(0deg);
+  transition: transform 0.3s;
+}
+
+/* Bees have been removed, so .bee hover effects are irrelevant */
+
+/* Beekeeper Hover Effect */
+.beekeeper:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
 }

@@ -3,55 +3,57 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./AnimatedContentSection.css";
 
-// AnimatedContentSection.jsx
+// Import images
+import flower1 from "../media/flower1.png";
+import flower2 from "../media/flower2.png";
+import flower3 from "../media/flower3.png";
+import flower4 from "../media/flower4.png";
+import flower5 from "../media/flower5.png";
+import flower6 from "../media/flower6.png";
+
+import beehive1 from "../media/beehive1.png";
+import beehive2 from "../media/beehive2.png";
+
+import beekeeper from "../media/beekeeper.png";
+import honeycomb from "../media/honeycomb.png";
+// Bees have been removed from the beekeeper section
+
+// Sample content data with imported images
 const contentData = [
   {
     title: "What is HIVE",
-    text: `HIVE is an innovative app designed to support beekeepers and modernize the way modular bee hives are managed...`,
+    text: `HIVE is an innovative app designed to support beekeepers and modernize the way modular bee hives are managed. By integrating Internet of Things (IoT) technology, HIVE allows users to monitor their hives in real time from the app. With advanced features like queen bee tracking, pest detection, behavioral analysis, and environmental sensors, HIVE provides invaluable insights into the health and activity of the hive, ensuring optimal care and efficiency.`,
     theme: "flowers",
-    images: [
-      "/media/flower1.png",
-      "/media/flower2.png",
-      "/media/flower3.png",
-      "/media/flower4.png",
-      "/media/flower5.png",
-      "/media/flower6.png",
-    ],
+    images: [flower1, flower2, flower3, flower4, flower5, flower6],
   },
   {
     title: "How Does HIVE Work",
-    text: `HIVE combines modular hive structures with IoT-enabled sensors and trackers...`,
+    text: `HIVE combines modular hive structures with IoT-enabled sensors and trackers. These devices collect data on hive conditions, such as temperature, humidity, and hive activity. The app provides beekeepers with real-time alerts on potential issues like pests, unusual behavior, or environmental changes, empowering them to take proactive action to protect their colonies.`,
     theme: "beehives",
-    images: [
-      "/media/beehive1.png",
-      "/media/beehive2.png",
-    ],
+    images: [beehive1, beehive2],
   },
   {
     title: "Why Choose HIVE",
-    text: `With its focus on sustainability and efficiency, HIVE is more than just a tool—it's a game-changer for beekeeping...`,
+    text: `With its focus on sustainability and efficiency, HIVE is more than just a tool—it's a game-changer for beekeeping. Whether you're a seasoned beekeeper or a beginner, HIVE simplifies hive management and enhances your ability to care for your bees. Its modular design ensures flexibility, and the app's intuitive interface makes it easy to stay connected to your hives anytime, anywhere.`,
     theme: "beekeeper",
-    images: [
-      "/media/beekeeper.png",
-      "/media/bee1.gif",
-      "/media/bee2.gif",
-      "/media/bee3.gif",
-    ],
+    images: [beekeeper, honeycomb],
   },
 ];
 
+// Flowers Animation Component
 const FlowersAnimation = ({ images }) => (
   <div className="flowers-container">
     {images.map((src, index) => (
       <motion.img
         key={index}
         src={src}
-        alt={`flower-${index}`}
-        className="flower"
-        initial={{ scale: 0, y: 50, opacity: 0 }}
-        animate={{ scale: 1, y: 0, opacity: 1 }}
+        alt={`flower-${index + 1}`}
+        className={`flower flower-${index + 1}`}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
         transition={{
           delay: index * 0.2,
+          duration: 0.5,
           type: "spring",
           stiffness: 100,
           damping: 10,
@@ -61,13 +63,14 @@ const FlowersAnimation = ({ images }) => (
   </div>
 );
 
+// Beehives Animation Component
 const BeehivesAnimation = ({ images }) => (
   <div className="beehives-container">
     {images.map((src, index) => (
       <motion.img
         key={index}
         src={src}
-        alt={`beehive-${index}`}
+        alt={`beehive-${index + 1}`}
         className={`beehive beehive-${index + 1}`}
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -82,6 +85,7 @@ const BeehivesAnimation = ({ images }) => (
   </div>
 );
 
+// Beekeeper Animation Component (Bees Removed)
 const BeekeeperAnimation = ({ images }) => (
   <div className="beekeeper-container">
     <motion.img
@@ -92,22 +96,16 @@ const BeekeeperAnimation = ({ images }) => (
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5 }}
     />
-    {images.slice(1).map((src, index) => (
-      <motion.img
-        key={index}
-        src={src}
-        alt={`bee-${index}`}
-        className="bee"
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: -100, opacity: 1 }}
-        transition={{
-          delay: 0.5 + index * 0.2,
-          duration: 2,
-          repeat: Infinity,
-          repeatType: "loop",
-        }}
-      />
-    ))}
+
+    {/* Honeycomb Image */}
+    <motion.img
+      src={images[1]}
+      alt="honeycomb"
+      className="honeycomb"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 0.3, duration: 0.5 }}
+    />
   </div>
 );
 
@@ -220,9 +218,7 @@ const AnimatedContentSection = () => {
             </h1>
 
             {/* Paragraph */}
-            <p className="section-text">
-              {contentData[currentSection].text}
-            </p>
+            <p className="section-text">{contentData[currentSection].text}</p>
           </motion.div>
         )}
       </AnimatePresence>
