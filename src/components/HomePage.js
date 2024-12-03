@@ -5,10 +5,10 @@ import bee2vid from "../media/bee2.mp4";
 import bee3vid from "../media/bee5.mp4";
 import bee4vid from "../media/bee6.mp4";
 import { motion } from "framer-motion";
-import AnimatedParagraph from "./AnimatedParagraph";
+import AnimatedParagraph from "./AnimatedParagraph"; // not in use but for some reason cuts hero section cards in half when commented out
 import Footer from "./Footer";
-import HoriScroll from "./HoriScroll";
-import AnimatedCircle from "./AnimatedCircle";
+//import HoriScroll from "./HoriScroll";
+//import AnimatedCircle from "./AnimatedCircle";
 import HiveApp from "./HiveApp";
 import AnimatedContentSection from "./AnimatedContentSection";
 import SectionSeparator from "./SectionSeperator";

@@ -4,6 +4,7 @@
   position: relative; /* Establishes a positioning context for absolutely positioned children */
   z-index: 1000; /* Ensure it appears above other content if overlapping */
   padding: 20px 0;
+  z-index: 1;
 }
 
 /* Change to absolute positioning to control with left and top */
@@ -17,6 +18,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) rotate(-5deg);
+  z-index: 1;
 }
 
 /* Specific word positioning - customize these as needed */
@@ -103,14 +105,17 @@
 /* Change font of the second word "About" */
 .word-1 {
   font-family: 'Angelos', sans-serif;
+  z-index: 1001; /* Ensure it appears above other words */
 }
 
 .word-2 {
   font-family: 'Angelos', Courier, monospace;
+  z-index: 1001; /* Ensure it appears above other words */
 }
 
 .word-3 {
   font-family: 'Angelos', cursive;
+  z-index: 1001; /* Ensure it appears above other words */
 }
 
 /* Make the first letter of the third word "HIVE" bold and larger */
@@ -118,29 +123,31 @@
   font-weight: bold;
   font-size: 3.2em; /* Slightly larger */
   margin-right: -30px;
+  
 }
 
 /* Enhanced and harmonious color palette */
 
 /* Assign different colors to letters in "Learn" */
-.letter-1-1 { color: #6D9DC5; } /* L - Soft Blue */
-.letter-1-2 { color: #FFD166; } /* e - Warm Yellow */
-.letter-1-3 { color: #06D6A0; } /* a - Fresh Green */
-.letter-1-4 { color: #EF476F; } /* r - Vibrant Pink */
-.letter-1-5 { color: #118AB2; } /* n - Deep Blue */
+.letter-1-1 { color: #947948; } /* L - Muted Gold */
+.letter-1-2 { color: #b59d70; } /* e - Soft Brown */
+.letter-1-3 { color: #f9e7c5; } /* a - Cream */
+.letter-1-4 { color: #cfbb7f; } /* r - Sandy Gold */
+.letter-1-5 { color: #947948; } /* n - Muted Gold */
 
 /* Assign different colors to letters in "About" */
-.letter-2-1 { color: #FFD166; } /* A - Warm Yellow */
-.letter-2-2 { color: #06D6A0; } /* b - Fresh Green */
-.letter-2-3 { color: #EF476F; } /* o - Vibrant Pink */
-.letter-2-4 { color: #118AB2; } /* u - Deep Blue */
-.letter-2-5 { color: #073B4C; } /* t - Dark Teal */
+.letter-2-1 { color: #b59d70; } /* A - Soft Brown */
+.letter-2-2 { color: #cfbb7f; } /* b - Sandy Gold */
+.letter-2-3 { color: #947948; } /* o - Muted Gold */
+.letter-2-4 { color: #f9e7c5; } /* u - Cream */
+.letter-2-5 { color: #b59d70; } /* t - Soft Brown */
 
 /* Assign different colors to letters in "HIVE" */
-.letter-3-1 { color: #06D6A0; } /* H - Fresh Green */
-.letter-3-2 { color: #EF476F; } /* I - Vibrant Pink */
-.letter-3-3 { color: #FFD166; } /* V - Warm Yellow */
-.letter-3-4 { color: #6D9DC5; } /* E - Soft Blue */
+.letter-3-1 { color: #cfbb7f; } /* H - Sandy Gold */
+.letter-3-2 { color: #947948; } /* I - Muted Gold */
+.letter-3-3 { color: #b59d70; } /* V - Soft Brown */
+.letter-3-4 { color: #f9e7c5; } /* E - Cream */
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
