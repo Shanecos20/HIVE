@@ -1,6 +1,7 @@
 // src/components/Navbar.js
 
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -25,20 +26,29 @@ const Navbar = () => {
     };
   }, [menuOpen]);
 
+  // Close the menu when a link is clicked
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <nav className="navbar">
-      <div className="navbar-logo">HIVE</div>
-        <div className="navbar-quick-links">
-          <a href="#story">
-            <span>About Us</span>
-          </a>
-          <a href="#about">
-            <span>Shop</span>
-          </a>
-          <a href="#download">
-            <span>Download</span>
-          </a>
-        </div>
+      <div className="navbar-logo">
+        <Link to="/" onClick={handleLinkClick}>
+          HIVE
+        </Link>
+      </div>
+      <div className="navbar-quick-links">
+        <Link to="/about" onClick={handleLinkClick}>
+          <span>About Us</span>
+        </Link>
+        <Link to="/shop" onClick={handleLinkClick}>
+          <span>Shop</span>
+        </Link>
+        <Link to="/download" onClick={handleLinkClick}>
+          <span>Download</span>
+        </Link>
+      </div>
 
       <div
         className={`burger ${menuOpen ? "open" : ""}`}
@@ -51,20 +61,29 @@ const Navbar = () => {
       <div className={`overlay ${menuOpen ? "slide-down" : "slide-up"}`}>
         <ul className="overlay-menu">
           <li>
-            <a href="#home">Home</a>
+            <Link to="/" onClick={handleLinkClick}>
+              Home
+            </Link>
           </li>
           <li>
-            <a href="#download">Download</a>
+            <Link to="/download" onClick={handleLinkClick}>
+              Download
+            </Link>
           </li>
           <li>
-            <a href="#about">About</a>
-          </li>{" "}
-          {/* New About button in overlay */}
-          <li>
-            <a href="#marketplace">Products</a>
+            <Link to="/about" onClick={handleLinkClick}>
+              About
+            </Link>
           </li>
           <li>
-            <a href="#contact">Contact</a>
+            <Link to="/shop" onClick={handleLinkClick}>
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={handleLinkClick}>
+              Contact
+            </Link>
           </li>
         </ul>
       </div>
