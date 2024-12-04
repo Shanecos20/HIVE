@@ -291,7 +291,7 @@ const HomePage = () => {
       </section>
       {/* Trigger Sections */}
       <div className="trigger" id="trigger-1"></div>
-      <div className="trigger" id="trigger-2"></div>F
+      <div className="trigger" id="trigger-2"></div>
       <div className="trigger" id="trigger-3"></div>
       <div className="trigger" id="trigger-4"></div>{" "}
       {/* Previously the fade and unfix trigger */}

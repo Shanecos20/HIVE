@@ -23,7 +23,10 @@ font-family: 'Emotion';
   font-family: 'Emotion';
 }
 
-
+#App {
+  font-family: 'Melody';
+  font-weight: 50;
+}
 
 #Mission {  
   font-family: 'Emotion';
