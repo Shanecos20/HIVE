@@ -1,25 +1,71 @@
 // src/components/ContactPage.jsx
 
-import React, { useState, useEffect, useRef } from 'react';
-import './ContactPage.css'; // Import the CSS for styling
-import Footer from './Footer'; // Import your existing Footer component
+import React, { useState, useEffect, useRef } from "react";
+import "./ContactPage.css"; // Import the CSS for styling
+import Footer from "./Footer"; // Import your existing Footer component
+
+// Import images
+import headImage from "../media/beeBody/head.png";
+import furImage from "../media/beeBody/fur.png";
+import antennaLImage from "../media/beeBody/antennaL.png";
+import antennaRImage from "../media/beeBody/antennaR.png";
+import eyeLImage from "../media/beeBody/eyeL.png";
+import eyeRImage from "../media/beeBody/eyeR.png";
+import eyeWhiteLImage from "../media/beeBody/eyeWhiteL.png";
+import eyeWhiteRImage from "../media/beeBody/eyeWhiteR.png";
+import legLImage from "../media/beeBody/legL.png";
+import legRImage from "../media/beeBody/legR.png";
 
 const ContactPage = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  // Track mouse movement
+  // State to track which form is open
+  const [openForm, setOpenForm] = useState(null);
+
+  // State for form inputs
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    company: "", // Added company field for partnership form
+  });
+
+  // State for submission status
+  const [status, setStatus] = useState("");
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Implement your form submission logic here
+      console.log("Form submitted:", formData);
+      setStatus("Message sent successfully!");
+      // Reset form
+      setFormData({ name: "", email: "", message: "", company: "" });
+    } catch (error) {
+      setStatus("There was an error sending your message. Please try again.");
+    }
+  };
+
+  // Track mouse movement for eye tracking
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
-  // Function to calculate eye position
-  const calculateEyePosition = (eyeRef) => {
+  // Function to calculate pupil position
+  const calculatePupilPosition = (eyeRef) => {
     if (!eyeRef.current) return {};
     const rect = eyeRef.current.getBoundingClientRect();
     const eyeX = rect.left + rect.width / 2;
@@ -27,12 +73,11 @@ const ContactPage = () => {
     const dx = mousePosition.x - eyeX;
     const dy = mousePosition.y - eyeY;
     const angle = Math.atan2(dy, dx);
-    const radius = 20; // Increase radius due to bigger eyes
+    const radius = rect.width * 0.01; // Adjust the radius as needed
     const x = radius * Math.cos(angle);
     const y = radius * Math.sin(angle);
     return {
-      left: `calc(50% - 10px + ${x}px)`,
-      top: `calc(50% - 10px + ${y}px)`,
+      transform: `translate(${x}px, ${y}px)`,
     };
   };
 
@@ -49,51 +94,204 @@ const ContactPage = () => {
         </h1>
         <h2 className="contactpage-subtitle">How can we help you?</h2>
         <p className="contactpage-description">
-          Select a section below, fill out the form, and we'll be in contact shortly.
+          Select a section below, fill out the form, and we'll be in contact
+          shortly.
         </p>
         {/* Leading trail */}
         <div className="leading-trail"></div>
       </div>
 
+      <div className="contactpage-legs">
+        <img src={legLImage} alt="Left Leg" className="bee-leg-left" />
+        <img src={legRImage} alt="Right Leg" className="bee-leg-right" />
+      </div>
+
       {/* Bee Head Section */}
       <div className="contactpage-bee-container">
         <div className="bee-head">
-          <div className="bee-eye" ref={leftEyeRef}>
-            <div
-              className="bee-pupil"
-              style={calculateEyePosition(leftEyeRef)}
-            ></div>
+          <img src={headImage} alt="Bee Head" className="bee-head-image" />
+          <img src={furImage} alt="Fur" className="bee-fur-image" />
+          <img
+            src={antennaLImage}
+            alt="Left Antenna"
+            className="bee-antenna-left"
+          />
+          <img
+            src={antennaRImage}
+            alt="Right Antenna"
+            className="bee-antenna-right"
+          />
+
+          <div className="bee-eye left-eye" ref={leftEyeRef}>
+            <img src={eyeLImage} alt="Left Eye" className="bee-eye-image" />
+            <div className="eye-white" id="eye-whiteL">
+              <img
+                src={eyeWhiteLImage}
+                alt="Eye White"
+                className="bee-eye-white-image"
+                style={calculatePupilPosition(leftEyeRef)}
+              />
+            </div>
           </div>
-          <div className="bee-eye" ref={rightEyeRef}>
-            <div
-              className="bee-pupil"
-              style={calculateEyePosition(rightEyeRef)}
-            ></div>
+
+          <div className="bee-eye right-eye" ref={rightEyeRef}>
+            <img src={eyeRImage} alt="Right Eye" className="bee-eye-image" />
+            <div className="eye-white" id="eye-whiteR">
+              <img
+                src={eyeWhiteRImage}
+                alt="Eye White"
+                className="bee-eye-white-image"
+                style={calculatePupilPosition(rightEyeRef)}
+              />
+            </div>
           </div>
-          {/* Add more bee features here if desired */}
         </div>
       </div>
 
       {/* Options Section */}
       <div className="contactpage-options">
-        <div className="contactpage-option">
-          <div className="option-card">
+        {/* Partnership Inquiries Option */}
+        <div
+          className={`contactpage-option ${
+            openForm === "partnership" ? "open" : ""
+          }`}
+        >
+          <div
+            className="option-card"
+            onClick={() => setOpenForm("partnership")}
+          >
             <div className="option-front">
               <h3>Partnership Inquiries</h3>
             </div>
             <div className="option-back">
-              <p>Interested in partnering with us? Fill out our partnership form.</p>
+              <p>
+                Interested in partnering with us? Click to fill out our
+                partnership form.
+              </p>
             </div>
           </div>
+          {/* Partnership Form */}
+          <div className="form-container">
+            {openForm === "partnership" && (
+              <form className="contactpage-form" onSubmit={handleSubmit}>
+                <label className="contactpage-form-label">
+                  Name:
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your Name"
+                    className="contactpage-form-input"
+                  />
+                </label>
+                <label className="contactpage-form-label">
+                  Email:
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="your.email@example.com"
+                    className="contactpage-form-input"
+                  />
+                </label>
+                <label className="contactpage-form-label">
+                  Company:
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your Company"
+                    className="contactpage-form-input"
+                  />
+                </label>
+                <label className="contactpage-form-label">
+                  Message:
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your message..."
+                    className="contactpage-form-textarea"
+                  ></textarea>
+                </label>
+                <button type="submit" className="contactpage-submit-button">
+                  Send Message
+                </button>
+                {status && <p className="contactpage-form-status">{status}</p>}
+              </form>
+            )}
+          </div>
         </div>
-        <div className="contactpage-option">
-          <div className="option-card">
+
+        {/* Product Questions Option */}
+        <div
+          className={`contactpage-option ${
+            openForm === "product" ? "open" : ""
+          }`}
+        >
+          <div className="option-card" onClick={() => setOpenForm("product")}>
             <div className="option-front">
               <h3>Product Questions</h3>
             </div>
             <div className="option-back">
-              <p>Have questions about our products? Get in touch with us here.</p>
+              <p>
+                Have questions about our products? Click to get in touch with us
+                here.
+              </p>
             </div>
+          </div>
+          {/* Product Questions Form */}
+          <div className="form-container">
+            {openForm === "product" && (
+              <form className="contactpage-form" onSubmit={handleSubmit}>
+                <label className="contactpage-form-label">
+                  Name:
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your Name"
+                    className="contactpage-form-input"
+                  />
+                </label>
+                <label className="contactpage-form-label">
+                  Email:
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="your.email@example.com"
+                    className="contactpage-form-input"
+                  />
+                </label>
+                <label className="contactpage-form-label">
+                  Message:
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your message..."
+                    className="contactpage-form-textarea"
+                  ></textarea>
+                </label>
+                <button type="submit" className="contactpage-submit-button">
+                  Send Message
+                </button>
+                {status && <p className="contactpage-form-status">{status}</p>}
+              </form>
+            )}
           </div>
         </div>
       </div>
@@ -137,7 +335,6 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
-            {/* Add more team members as needed */}
             <div className="team-member">
               <div className="member-card">
                 <div className="member-front">
@@ -148,6 +345,7 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
+            {/* Add more team members as needed */}
           </div>
         </div>
       </div>
