@@ -1,0 +1,33 @@
+/* Checkout.css */
+.checkout-page {
+    font-family: sans-serif;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .checkout-form label {
+    font-weight: bold;
+  }
+  
+  .checkout-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .pay-button {
+    background: #f9a825;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+  }
+  

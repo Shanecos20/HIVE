@@ -9,9 +9,11 @@ import ShopPage from "./components/ShopPage";
 import AboutPage from "./components/AboutPage";
 import Navbar from "./components/Navbar";
 import "./App.css";
+import { CartProvider } from "./components/CartContext";
 
 function App() {
   return (
+    <CartProvider>
     <Router>
       <div className="App">
         <Navbar />
@@ -29,6 +31,7 @@ function App() {
         </div>
       </div>
     </Router>
+    </CartProvider>
   );
 }
 
