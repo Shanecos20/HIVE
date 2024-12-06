@@ -30,7 +30,7 @@
   font-size: 10em;
   color: rgba(20, 20, 20, 0.69);
   z-index: -10;
-  font-family: 'Emotion', sans-serif; /* Replace with your font */
+  font-family: "Emotion", sans-serif; /* Replace with your font */
   animation: backgroundZoomIn 2s ease forwards;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .leading-trail::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -20px;
   left: 50%;
@@ -146,7 +146,9 @@
   width: 500px;
   height: 500px;
   z-index: 22;
-  top: 60px; 
+  top: 60px;
+  pointer-events: none;
+
 }
 
 .bee-leg-right {
@@ -155,6 +157,7 @@
   width: 500px;
   height: 500px;
   z-index: 9999;
+  pointer-events: none;
 }
 
 .bee-eye {
@@ -185,8 +188,6 @@
   height: 300px; /* Adjust size */
   top: 30%; /* Adjust positioning */
   left: 20%; /* Adjust positioning */
-  
-  
 }
 
 #eye-whiteR {
@@ -203,7 +204,6 @@
   width: 100%;
   height: auto;
 }
-
 
 .contactpage-legs {
   display: flex;
@@ -232,7 +232,6 @@
   flex: 1;
   max-width: 700px;
   position: relative;
-  
 }
 
 .option-card {
@@ -438,7 +437,7 @@
 
 .member-back p {
   font-style: italic;
-  font-family: 'RetroFont', sans-serif; /* Replace with your retro font */
+  font-family: "RetroFont", sans-serif; /* Replace with your retro font */
 }
 
 /* Responsive Design */
@@ -459,20 +458,15 @@
     width: 80%;
   }
 
-  .bee-head {
-    width: 300px;
-    height: 300px;
-  }
-
-  .bee-eye {
-    width: 60px;
-    height: 60px;
+  .contactpage-bee-container {
+    visibility: none;
   }
 }
 
 @media (max-width: 480px) {
   .contactpage-title {
     font-size: 2rem;
+    margin-bottom: 10px;
   }
 
   .contactpage-subtitle {
@@ -483,15 +477,6 @@
     font-size: 1rem;
   }
 
-  .bee-head {
-    width: 200px;
-    height: 200px;
-  }
-
-  .bee-eye {
-    width: 40px;
-    height: 40px;
-  }
 
   .contactpage-option {
     width: 100%;
@@ -499,5 +484,9 @@
 
   .contactpage-form {
     width: 100%;
+  }
+
+  .contactpage-bee-container {
+    visibility: none;
   }
 }

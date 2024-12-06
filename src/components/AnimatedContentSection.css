@@ -41,6 +41,8 @@
   height: 300px;
   rotate: 20deg;
   z-index: 106;
+  pointer-events: none;
+
 }
 
 .flower-2 {
@@ -50,6 +52,8 @@
   height: 300px;
   rotate: 20deg;
   z-index: 105;
+  pointer-events: none;
+
 }
 
 .flower-3 {
@@ -58,6 +62,8 @@
   width: 500px;
   height: 500px;
   z-index: 102;
+  pointer-events: none;
+
 }
 
 .flower-4 {
@@ -67,6 +73,8 @@
   height: 500px;
   rotate: -150deg;
   z-index: 107;
+  pointer-events: none;
+
 }
 
 .flower-5 {
@@ -75,6 +83,8 @@
   width: 400px;
   height: 400px;
   z-index: 100;
+  pointer-events: none;
+
 }
 
 .flower-6 {
@@ -84,6 +94,7 @@
   height: 900px;
   rotate: -120deg;
   z-index: 104;
+  pointer-events: none;
 }
 
 /* Keyframes for sway animation */
@@ -118,6 +129,7 @@
   z-index: 3;
   left: -5%;
   top: 30%;
+  pointer-events: none;
 }
 
 .beehive-2 {
@@ -126,6 +138,7 @@
   left: 15%;  
   width: 300px;
   height: 300px;
+  pointer-events: none;
 }
 
 /* animation to make beehives bob up and down infinitely */
@@ -151,11 +164,13 @@
   width: 1000px;
   height: 1000px;
   z-index: 99;
+  pointer-events: none;
 }
 
 .beekeeper {
   width: 100%;
   height: auto;
+  pointer-events: none;
 }
 
 .honeycomb {
@@ -180,6 +195,8 @@
   pointer-events: auto;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds depth */
   z-index: 100; /* Ensures it appears above other content */
+  pointer-events: none;
+
 }
 
 .section-text {
@@ -193,6 +210,8 @@
   line-height: 1.6; /* Enhanced readability */
   pointer-events: auto;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Adds depth */
+  pointer-events: none;
+
 }
 
 /* Responsive Design */
