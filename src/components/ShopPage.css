@@ -1,41 +1,75 @@
 /* ShopPage.css */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .shop-page {
   background-color: #000;
-  color: #c2a042;
-  font-family: Arial, sans-serif;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Header */
+/* Header with Curved Text */
 .shop-header {
   position: relative;
-  padding: 40px 20px;
+  padding: 100px 20px 140px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
-.shop-title-section {
-  text-align: center;
+.curved-text-container {
+  position: relative;
+  width: 800px;
+  height: 300px;
 }
 
-.shop-title {
+.curved-text-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.curved-text-container text {
   font-family: 'Playfair Display', serif;
-  font-size: 64px;
-  margin: 0;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: transform 0.3s;
+  font-weight: 700;
+  font-size: 80px;
+  fill: #fff;
+  filter: drop-shadow(0 0 10px #fff);
 }
 
-.shop-title:hover {
-  transform: scale(1.05);
+/* Staggered Words */
+.staggered-words {
+  position: relative;
+  margin-top: -60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.staggered-word {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  filter: drop-shadow(0 0 10px #fff);
+  color: #fff;
+  text-transform: lowercase;
+}
+
+/* Slight horizontal offsets to emulate "staggered" layout */
+.word1 {
+  transform: translateX(-20px);
+}
+.word2 {
+  transform: translateX(20px);
+}
+.word3 {
+  transform: translateX(-10px);
 }
 
 /* Cart Button */
@@ -43,18 +77,19 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #c2a042;
+  background: #fff;
   color: #000;
   padding: 15px 20px;
   border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
   z-index: 100;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 6px rgba(255,255,255,0.3);
+  font-weight: bold;
 }
 
 .cart-button:hover {
-  background: #b08f3a;
+  background: #eaeaea;
 }
 
 /* Featured Section */
@@ -67,6 +102,8 @@
   font-family: 'Playfair Display', serif;
   font-size: 42px;
   margin-bottom: 40px;
+  color: #fff;
+  filter: drop-shadow(0 0 6px #fff);
 }
 
 .featured-cards {
@@ -78,7 +115,7 @@
 
 .featured-card {
   background: #111;
-  border: 2px solid #c2a042;
+  border: 2px solid #fff;
   border-radius: 10px;
   width: 300px;
   padding: 15px;
@@ -95,15 +132,15 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom: 2px solid #c2a042;
+  border-bottom: 2px solid #fff;
   margin-bottom: 15px;
 }
 
 .featured-card h3 {
   margin: 0;
   font-size: 20px;
-  font-family: Arial, sans-serif;
-  color: #c2a042;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
 }
 
 /* Toggle Switch */
@@ -125,8 +162,8 @@
 
 .toggle-label {
   display: block;
-  background: #222;
-  border: 2px solid #c2a042;
+  background: #111;
+  border: 2px solid #fff;
   border-radius: 25px;
   position: relative;
   cursor: pointer;
@@ -138,8 +175,9 @@
   top: 50%;
   transform: translateY(-50%);
   font-weight: bold;
-  color: #c2a042;
+  color: #fff;
   pointer-events: none;
+  font-family: 'Roboto', sans-serif;
 }
 
 .toggle-text.left {
@@ -156,7 +194,7 @@
   left: 4px;
   width: 115px;
   height: 40px;
-  background: #c2a042;
+  background: #fff;
   border-radius: 20px;
   transition: left 0.3s;
 }
@@ -166,17 +204,23 @@
 }
 
 /* Product List */
+.product-list-wrapper {
+  padding-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
 .product-list {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 0 20px 60px;
+  padding: 0 20px;
 }
 
 .product-item {
   display: flex;
   background: #111;
-  border: 2px solid #c2a042;
+  border: 2px solid #fff;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s;
@@ -190,7 +234,7 @@
 .product-image {
   width: 300px;
   object-fit: cover;
-  border-right: 2px solid #c2a042;
+  border-right: 2px solid #fff;
 }
 
 .product-details {
@@ -204,7 +248,8 @@
   font-size: 28px;
   font-family: 'Playfair Display', serif;
   cursor: pointer;
-  color: #c2a042;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
 .product-name:hover {
@@ -212,22 +257,23 @@
 }
 
 .product-desc {
-  margin: 15px 0;
+  margin: 10px 0;
   font-size: 16px;
-  color: #c2a042;
+  color: #fff;
 }
 
 .product-price {
   font-size: 20px;
   font-weight: bold;
-  color: #c2a042;
+  color: #fff;
+  margin-bottom: 30px;
 }
 
 .add-to-bag {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background: #c2a042;
+  background: #fff;
   border: none;
   color: #000;
   padding: 10px 15px;
@@ -237,29 +283,29 @@
 }
 
 .add-to-bag:hover {
-  background: #b08f3a;
+  background: #eaeaea;
 }
 
 /* Bundle Dropdown */
 .bundle-dropdown {
   margin-top: 20px;
-  background: #222;
+  background: #000;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #c2a042;
+  border: 1px solid #fff;
 }
 
 .bundle-dropdown h4 {
   margin: 0 0 10px 0;
-  color: #c2a042;
-  font-family: Arial, sans-serif;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
 }
 
 .bundle-product {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  color: #c2a042;
+  color: #fff;
 }
 
 .bundle-product img {
@@ -276,7 +322,7 @@
 }
 
 .checkout-button {
-  background: #c2a042;
+  background: #fff;
   color: #000;
   padding: 15px 25px;
   border: none;
@@ -287,7 +333,7 @@
 }
 
 .checkout-button:hover {
-  background: #b08f3a;
+  background: #eaeaea;
 }
 
 /* Responsive */
@@ -300,11 +346,28 @@
   .product-image {
     width: 100%;
     border-right: none;
-    border-bottom: 2px solid #c2a042;
+    border-bottom: 2px solid #fff;
   }
 
   .add-to-bag {
     position: static;
     margin-top: 10px;
+  }
+
+  .curved-text-container {
+    width: 300px;
+    height: 120px;
+  }
+
+  .curved-text-container text {
+    font-size: 40px;
+  }
+
+  .staggered-word {
+    font-size: 24px;
+  }
+
+  .featured-card {
+    width: 90%;
   }
 }
