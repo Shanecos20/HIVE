@@ -12,6 +12,7 @@ export default function ShopPage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [expandedBundle, setExpandedBundle] = useState(null);
 
+  
   const bundles = [
     {
       id: 1,
@@ -85,9 +86,9 @@ export default function ShopPage() {
         </div>
         {/* Additional staggered words below the curved text */}
         <div className="staggered-words">
-          <span className="staggered-word word1">shop</span>
-          <span className="staggered-word word2">the</span>
-          <span className="staggered-word word3">best</span>
+          <span className="staggered-word word1">Time</span>
+          <span className="staggered-word word2">To Get</span>
+          <span className="staggered-word word3">Bee-zy</span>
         </div>
 
         <div className="cart-button" onClick={() => setIsCartOpen(true)}>

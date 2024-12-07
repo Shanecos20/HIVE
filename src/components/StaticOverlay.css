@@ -1,0 +1,12 @@
+/* src/components/StaticOverlay.css */
+
+.static-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow interactions with underlying content */
+    z-index: 9999;        /* Ensure it's on top */
+  }
+  
