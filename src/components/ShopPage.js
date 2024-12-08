@@ -12,7 +12,6 @@ export default function ShopPage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [expandedBundle, setExpandedBundle] = useState(null);
 
-  
   const bundles = [
     {
       id: 1,
@@ -66,17 +65,52 @@ export default function ShopPage() {
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  const transitionVariant = {
-    initial: (direction) => ({ x: direction === 'enter' ? 300 : -300, opacity: 0 }),
-    animate: { x: 0, opacity: 1, transition: { duration: 0.5 } },
-    exit: (direction) => ({ x: direction === 'enter' ? -300 : 300, opacity: 0, transition: { duration: 0.5 } })
+  const featuredItems = [
+    { id: 'f1', title: 'Featured item 1' },
+    { id: 'f2', title: 'Featured item 2' },
+    { id: 'f3', title: 'Featured item 3' },
+    { id: 'f4', title: 'Featured item 4' },
+    { id: 'f5', title: 'Featured item 5' }
+  ];
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
   };
+
+  // Adjusted positions for more spread and larger cards
+  // Positions fan out more to left and right
+  const cardVariants = [
+    {
+      hidden: { x: '-50%', y: '-50%', rotate: 0 },
+      visible: { x: '-250%', y: '-40%', rotate: -15, transition: { type: 'spring', stiffness: 80 } }
+    },
+    {
+      hidden: { x: '-50%', y: '-50%', rotate: 0 },
+      visible: { x: '-150%', y: '-60%', rotate: -8, transition: { type: 'spring', stiffness: 80 } }
+    },
+    {
+      hidden: { x: '-50%', y: '-50%', rotate: 0 },
+      visible: { x: '-50%', y: '-50%', rotate: 2, transition: { type: 'spring', stiffness: 80 } }
+    },
+    {
+      hidden: { x: '-50%', y: '-50%', rotate: 0 },
+      visible: { x: '50%', y: '-60%', rotate: 8, transition: { type: 'spring', stiffness: 80 } }
+    },
+    {
+      hidden: { x: '-50%', y: '-50%', rotate: 0 },
+      visible: { x: '150%', y: '-40%', rotate: 15, transition: { type: 'spring', stiffness: 80 } }
+    }
+  ];
 
   return (
     <div className="shop-page">
       <header className="shop-header">
         <div className="curved-text-container">
-          {/* A gentler curve and larger viewBox to ensure text is visible */}
           <svg viewBox="0 0 800 300">
             <path id="curvePath" d="M100,200 C300,100 500,100 700,200" fill="transparent" />
             <text fontFamily="Playfair Display" fontWeight="700" fontSize="80" fill="#fff">
@@ -84,7 +118,6 @@ export default function ShopPage() {
             </text>
           </svg>
         </div>
-        {/* Additional staggered words below the curved text */}
         <div className="staggered-words">
           <span className="staggered-word word1">Time</span>
           <span className="staggered-word word2">To Get</span>
@@ -98,19 +131,23 @@ export default function ShopPage() {
 
       <section className="featured-section" ref={ref}>
         <h2 className="featured-heading">Featured Products</h2>
-        <div className="featured-cards">
-          {[1,2,3,4,5].map((num) => (
-            <motion.div
-              key={num}
-              className="featured-card"
-              initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: num * 0.2 }}
-            >
-              <img src="https://via.placeholder.com/300x200" alt={`Featured ${num}`} />
-              <h3>Exclusive Item {num}</h3>
-            </motion.div>
-          ))}
+        <div className="featured-container">
+          <motion.div 
+            className="featured-cards" 
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+          >
+            {featuredItems.map((item, index) => (
+              <motion.div 
+                key={item.id} 
+                className="featured-card"
+                variants={cardVariants[index]}
+              >
+                {item.title}
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -136,11 +173,9 @@ export default function ShopPage() {
             <motion.div
               key="bundles"
               className="product-list"
-              variants={transitionVariant}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              custom="enter"
+              initial={{ x: 300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
+              exit={{ x: -300, opacity: 0, transition: { duration: 0.5 } }}
             >
               {bundles.map(b => (
                 <div key={b.id} className="product-item">
@@ -177,11 +212,9 @@ export default function ShopPage() {
             <motion.div
               key="products"
               className="product-list"
-              variants={transitionVariant}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              custom="exit"
+              initial={{ x: -300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
+              exit={{ x: 300, opacity: 0, transition: { duration: 0.5 } }}
             >
               {individualProducts.map(p => (
                 <div key={p.id} className="product-item">
