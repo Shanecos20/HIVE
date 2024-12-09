@@ -1,34 +1,35 @@
-// DownloadPage.js
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import './DownloadPage.css';
+import beeVideo from '../media/bee2.mp4'; // Ensure correct path
+import qrImage from '../media/image.png';    // Add your QR code image here
 
 export default function DownloadPage() {
-  const beeRef = useRef(null);
-  
-  // Simple mouse tracking for the bee eyes
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const bee = beeRef.current;
-      if(!bee) return;
-      const rect = bee.getBoundingClientRect();
-      const centerX = rect.left + rect.width/2;
-      const centerY = rect.top + rect.height/2;
-      const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-      const rotate = angle * (180 / Math.PI);
-      bee.style.transform = `rotate(${rotate}deg)`;
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return ()=> window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
-    <div className="download-page">
-      <div className="bee-container">
-        <div className="bee" ref={beeRef}></div>
+    <div className="contact-page">
+      <video className="background-video" autoPlay loop muted>
+        <source src={beeVideo} type="video/mp4" />
+      </video>
+      <div className="main-content">
+        <div className="address-lines">
+          <div className="line line1">HVIEAPP</div>
+          <div className="line line2">DOWNLOAD</div>
+          <div className="line line3">HERE</div>
+        </div>
+        <div className="contact-info">
+          <div className="contact-label">[CONTACT]</div>
+          <div className="contact-details">
+            HIVE@HIVEAPP.IE<br/>
+            +00 00 000 0000
+          </div>
+        </div>
+        <div className="store-links">
+          <a href="#" className="store-button ios">iOS</a>
+          <a href="#" className="store-button android">Android</a>
+        </div>
+        <div className="qr-container">
+          <img src={qrImage} alt="QR Code" />
+        </div>
       </div>
-      <h2>Download the App</h2>
-      <p>Get the latest version of our AI-powered hive management app.</p>
-      <button className="download-button">Download Now</button>
     </div>
   );
 }

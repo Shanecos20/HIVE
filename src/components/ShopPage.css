@@ -238,6 +238,7 @@ html {
 
 .toggle-text.left {
   left: 20px;
+  z-index: 99;
 }
 
 .toggle-text.right {

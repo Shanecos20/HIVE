@@ -1,34 +1,193 @@
-/* DownloadPage.css */
-.download-page {
-    font-family: sans-serif;
-    text-align: center;
-    padding: 40px;
-  }
+/* DownloadPage.css (renamed from ContactPage.css if necessary) */
+.contact-page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  font-family: sans-serif;
+  color: #fff;
+} 
+
+.background-video {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  visibility: none;
+}
+
+.main-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.address-lines {
+  text-transform: uppercase;
+  font-size: 9vw;
+  line-height: 1;
+  font-weight: 700;
+  margin-bottom: 10vh;
+}
+
+.line {
+  margin: 0;
+  font-family: Emotion, sans-serif;
+  margin-top: 30px;
+  color: #cfbb7f;
+  text-shadow: 10px 10px 10px rgb(0, 0, 0);
+  font-style: italic;
+}
+
+.line1 {
+  margin-left: 30px;
+}
+
+.line2 {
+  margin-left: 200px;
+}
+
+.line3 {
+  margin-left: 30px;
+}
+
+.contact-info {
+  position: absolute;
+  bottom: 1vw;
+  left: 2vw;
+  text-transform: uppercase;
+  font-size: 1.5vw;
+  line-height: 1.4;
+  text-shadow: 5px 0px 10px rgb(0, 0, 0);
+
   
-  .bee-container {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 20px auto;
-    position: relative;
+}
+
+.contact-label {
+  color: #cfbb7f;
+  margin-bottom: 0.5em;
+  font-size: 1.2vw;
+
+}
+
+.contact-details:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.store-links {
+  position: absolute;
+  bottom: 13vw;
+  right: 9.2%;
+  display: flex;
+  gap: 1vw; /* Slightly increase gap for a sleeker look */
+}
+
+/* Updated Button Styles */
+.store-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Fixed sizing for even, longish shape */
+  width: 10vw;
+  height: 2.7vw;
+  border-radius: 0.5vw;
+  border: 1px solid #cfbb7f;
+  /* Modern trapezoidal shape */
+  background: transparent;
+  /* shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* Text styling */
+  color: #ffffff;
+  font-size: 1.2vw;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.store-button:hover {
+  transform: scale(1.07);
+}
+
+/* iOS & Android classes can now share same style, 
+   but we keep them for semantic clarity */
+.store-button.ios {
+}
+.store-button.android {
+}
+
+/* QR Container */
+.qr-container {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-70%);
+  width: 20vw;
+  height: 20vw;
+  z-index: 3;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  border: 2px solid #100f0f92;
+
+  /* Rounded corners */
+  border-radius: 15px; /* Adjust the value as needed */
+  overflow: hidden; /* Ensures the background image respects the border radius */
+}
+
+
+/* media queries */
+
+@media screen and (max-width: 768px) {
+  .address-lines {
+    font-size: 6vw;
+    margin-top: -100px;
   }
-  
-  .bee {
-    width: 40px;
-    height: 40px;
-    background: url('data:image/svg+xml,%3Csvg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="50" cy="50" r="50" fill="%23FFD54F"/%3E%3Ccircle cx="34" cy="40" r="8" fill="%23000000"/%3E%3Ccircle cx="66" cy="40" r="8" fill="%23000000"/%3E%3C/svg%3E') center/cover;
-    border-radius: 50%;
-    position: absolute;
-    top:30px;
-    left:30px;
-    transition: transform 0.1s;
+
+  .contact-info  {
+    font-size: 7vw;
   }
-  
-  .download-button {
-    background: #4caf50;
-    color: #fff;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+  .contact-label {
+    font-size: 7vw;
+    margin-bottom: -2px;
   }
-  
+
+  .store-button {
+    width: 30vw;
+    height: 10vw;
+    border-radius: 1vw;
+    font-size: 5vw;
+    right: 30px;
+    bottom: 150px;
+  }
+
+  .store-links {
+    bottom: 10vw;
+    gap: 4vw;
+  }
+
+  .qr-container {
+    width: 30vw;
+    height: 30vw;
+    visibility: hidden;
+  }
+
+  .line {
+    font-size: 16vw;
+  }
+
+  .line2 {
+    margin-left: 60px;
+  }
+
+}

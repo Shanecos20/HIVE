@@ -119,9 +119,9 @@ export default function ShopPage() {
           </svg>
         </div>
         <div className="staggered-words">
-          <span className="staggered-word word1">Time</span>
+          {/* <span className="staggered-word word1">Time</span>
           <span className="staggered-word word2">To Get</span>
-          <span className="staggered-word word3">Bee-zy</span>
+          <span className="staggered-word word3">Bee-zy</span> */}
         </div>
 
         <div className="cart-button" onClick={() => setIsCartOpen(true)}>
