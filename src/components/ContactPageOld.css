@@ -1,0 +1,495 @@
+src/styles/ContactPage.css
+
+/* Base Styles */
+.contactpage-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contactpage-header {
+  text-align: center;
+  padding: 100px 20px 20px 20px;
+  position: relative;
+}
+
+.contactpage-title {
+  font-size: 10rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  margin-top: 50px;
+  position: relative;
+  z-index: 2;
+  font-family: Emotion, sans-serif; /* Replace with your font */
+  color: #c4ae6b; 
+}
+
+.contactpage-title-background {
+  position: absolute;
+  left: 50%;
+  top: 200%;
+  transform: translate(-50%, -50%);
+  font-size: 10em;
+  color: rgba(20, 20, 20, 0.69);
+  z-index: -10;
+  font-family: "Emotion", sans-serif; /* Replace with your font */
+  animation: backgroundZoomIn 2s ease forwards;
+  visibility: hidden;
+}
+
+@keyframes backgroundZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translate(-50%, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+.contactpage-subtitle {
+  font-size: 5rem;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+  font-family: Melody;
+  color: #000;
+  background: linear-gradient(to right, #c4ae6b, #c0ac85);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contactpage-description {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+/* Leading trail */
+.leading-trail {
+  width: 2px;
+  height: 50px;
+  background-color: #c4ae6b;
+  margin: 0 auto;
+  position: relative;
+}
+
+.leading-trail::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #c4ae6b;
+  border-radius: 50%;
+}
+
+/* Bee Head Section */
+.contactpage-bee-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 400px;
+  position: relative;
+  z-index: 20;
+}
+
+.bee-head {
+  position: absolute;
+  top: 90px;
+  width: 500px; /* Adjust as per your images */
+  height: 500px; /* Adjust as per your images */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.bee-head-image {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+
+.bee-fur-image {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: -15px;
+  z-index: -2;
+}
+
+.bee-antenna-left {
+  position: absolute;
+  top: -20px; /* Adjust as needed */
+  left: 0; /* Adjust as needed */
+  width: 3000px;
+  height: auto;
+  z-index: 22;
+}
+
+.bee-antenna-right {
+  position: absolute;
+  top: -20px; /* Adjust as needed */
+  right: 0; /* Adjust as needed */
+  width: 3000px;
+  height: auto;
+  z-index: 22;
+}
+
+.bee-leg-left {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  z-index: 22;
+  top: 60px;
+  pointer-events: none;
+
+}
+
+.bee-leg-right {
+  position: absolute;
+  top: 60px;
+  width: 500px;
+  height: 500px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.bee-eye {
+  position: absolute;
+  width: 500px; /* Adjust as needed */
+  height: 300px; /* Adjust as needed */
+  z-index: 33;
+}
+
+.bee-eye.left-eye {
+  left: 0%; /* Adjust positioning */
+  top: 0%; /* Adjust positioning */
+}
+
+.bee-eye.right-eye {
+  right: 0%; /* Adjust positioning */
+  top: 0%; /* Adjust positioning */
+}
+
+.bee-eye-image {
+  width: 100%;
+  height: auto;
+}
+
+.eye-white {
+  position: absolute;
+  width: 300px; /* Adjust size */
+  height: 300px; /* Adjust size */
+  top: 30%; /* Adjust positioning */
+  left: 20%; /* Adjust positioning */
+}
+
+#eye-whiteR {
+  left: 26%; /* Adjust positioning */
+  top: 45%; /* Adjust positioning */
+}
+
+#eye-whiteL {
+  left: 13%; /* Adjust positioning */
+  top: 45%; /* Adjust positioning */
+}
+
+.bee-eye-white-image {
+  width: 100%;
+  height: auto;
+}
+
+.contactpage-legs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 23;
+}
+/* Options Section */
+/* ... Existing styles for options and forms ... */
+
+/* Responsive Design */
+/* ... Your existing media queries ... */
+
+/* Options Section */
+.contactpage-options {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 200px;
+  position: relative;
+  z-index: 22;
+}
+
+.contactpage-option {
+  flex: 1;
+  max-width: 700px;
+  position: relative;
+}
+
+.option-card {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.option-front,
+.option-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  transition: transform 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.option-front {
+  background-color: #0a0909;
+  z-index: 2;
+}
+
+.option-back {
+  background-color: #ffffff;
+  transform: translateY(100%);
+  z-index: 1;
+}
+
+.option-card:hover .option-front {
+  transform: translateY(-100%);
+}
+
+.option-card:hover .option-back {
+  transform: translateY(0);
+}
+
+.option-front h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.option-back p {
+  color: #000000;
+  margin: 0 20px;
+}
+
+/* Form Container */
+.form-container {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.contactpage-option.open .form-container {
+  max-height: 1000px; /* Adjust as needed */
+}
+
+.contactpage-form {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.contactpage-form-label {
+  display: block;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.contactpage-form-input,
+.contactpage-form-textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.contactpage-submit-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #e6d098;
+  transition: background-color 0.3s;
+}
+
+.contactpage-submit-button:hover {
+  background-color: #c4ae6b;
+}
+
+.contactpage-form-status {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: rgb(237, 223, 112); /* Adjust color as needed */
+}
+
+/* Leading trail below options */
+.contactpage-options + .leading-trail {
+  margin-top: -25px;
+}
+
+/* Info Sections */
+.contactpage-info-sections {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 50px 20px;
+  flex-wrap: wrap;
+}
+
+.info-section {
+  flex: 1;
+  max-width: 300px;
+  margin: 20px;
+  text-align: center;
+}
+
+.info-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.section-line {
+  width: 300px;
+  height: 2px;
+  background-color: #ccc;
+  margin: 0 auto 20px auto;
+}
+
+.info-section p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Team Members */
+.team-members {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-member {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  margin: 10px 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.member-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.member-front,
+.member-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  transition: transform 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-front {
+  background-color: #333;
+  z-index: 2;
+}
+
+.member-back {
+  background-color: #555;
+  transform: translate(-100%, 100%);
+  z-index: 1;
+}
+
+.team-member:hover .member-front {
+  transform: translate(100%, -100%);
+}
+
+.team-member:hover .member-back {
+  transform: translate(0, 0);
+}
+
+.member-front p,
+.member-back p {
+  color: #fff;
+  margin: 0;
+}
+
+.member-front p {
+  font-weight: bold;
+}
+
+.member-back p {
+  font-style: italic;
+  font-family: "RetroFont", sans-serif; /* Replace with your retro font */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contactpage-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contactpage-option {
+    max-width: none;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .info-section {
+    max-width: none;
+    width: 80%;
+  }
+
+  .contactpage-bee-container {
+    visibility: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactpage-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .contactpage-subtitle {
+    font-size: 2.5rem;
+  }
+
+  .contactpage-description {
+    font-size: 1rem;
+  }
+
+
+  .contactpage-option {
+    width: 100%;
+  }
+
+  .contactpage-form {
+    width: 100%;
+  }
+
+  .contactpage-bee-container {
+    visibility: none;
+  }
+}
