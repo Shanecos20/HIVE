@@ -268,8 +268,9 @@ const HomePage = () => {
               src={card.video}
               muted
               loop
+              playsInline
               className="card-image"
-              loading="lazy" // Lazy loading for performance
+
               // Removed autoPlay to control via refs
             />
           </motion.div>

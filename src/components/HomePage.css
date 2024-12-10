@@ -276,6 +276,10 @@ margin-top: -175px;
     transform: none;
   }
 
+  #Footer {
+    padding-bottom: -100px;
+  }
+
   #App {
     z-index: -1;
   }
@@ -311,6 +315,7 @@ margin-top: -175px;
   .title-line {
     flex-direction: column;
     align-items: center;
+    font-size: 5rem;
   }
 
   .text-line {
@@ -328,6 +333,17 @@ margin-top: -175px;
     bottom: 20px;
     max-width: 90%;
   }
+
+  .overlapping-cards-container {
+    top: -30%;
+    z-index: 2;
+  }
+  
+  .text-line {
+    z-index: -10;
+  }
+
+
 }
 
 /* Existing styles */
@@ -360,7 +376,8 @@ margin-top: -175px;
 /* Responsive Adjustments (Optional) */
 @media (max-width: 768px) {
   .new-section {
-    padding: 60px 15px;
+    padding-bottom: 0px;
+
   }
 
   .new-section h2 {

@@ -6,7 +6,7 @@ import qrImage from '../media/image.png';    // Add your QR code image here
 export default function DownloadPage() {
   return (
     <div className="contact-page">
-      <video className="background-video" autoPlay loop muted>
+      <video className="background-video" autoPlay loop muted playsInline>
         <source src={beeVideo} type="video/mp4" />
       </video>
       <div className="main-content">

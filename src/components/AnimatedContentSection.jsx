@@ -239,8 +239,8 @@ const AnimatedContentSection = () => {
               contentData[currentSection].images
             )}
 
-            {/* Title */}
-            <h1 className="section-title">
+            {/* Title with Unique Class */}
+            <h1 className={`section-title section-title-${currentSection}`}>
               {contentData[currentSection].title}
             </h1>
 

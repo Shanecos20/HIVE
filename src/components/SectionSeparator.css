@@ -157,16 +157,27 @@
     /* You can create separate classes for mobile if needed */
   }
 
+  .separator-container {
+    margin-top: 150px;
+  }
+
   .separator-container.visible .word-1 {
     /* Adjust positions for visibility */
+    margin-top: 30px;
+    margin-left: -50px;;
   }
 
   .separator-container.visible .word-2 {
     /* Adjust positions for visibility */
+    margin-top: 60px;
+    width: 100%; /* Adjusted width for visibility */
+
   }
 
   .separator-container.visible .word-3 {
     /* Adjust positions for visibility */
+    margin-top: 110px;
+
   }
 
   .letter {
