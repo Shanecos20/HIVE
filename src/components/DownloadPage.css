@@ -16,6 +16,7 @@
   height: 120%;
   object-fit: cover;
   visibility: none;
+  opacity: 0.5;
 }
 
 .main-content {
