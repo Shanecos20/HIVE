@@ -11,7 +11,7 @@ export default function DownloadPage() {
       </video>
       <div className="main-content">
         <div className="address-lines">
-          <div className="line line1">HVIEAPP</div>
+          <div className="line line1">HIVEAPP</div>
           <div className="line line2">DOWNLOAD</div>
           <div className="line line3">HERE</div>
         </div>

@@ -65,6 +65,7 @@ html {
   max-width: 1200px;
   height: auto;
   overflow: visible;
+  margin-top: 150px;
 }
 
 .curved-text-container svg {

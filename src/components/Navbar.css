@@ -34,7 +34,7 @@
   font-size: 1rem;
   color: #FFFFFF;
   text-decoration: none;
-  font-family: 'CustomFont', sans-serif;
+  font-family: 'Emotions', sans-serif;
   font-weight: none;
 }
 
@@ -191,6 +191,7 @@
 
 .overlay-menu li a:hover {
   color: #947948;
+  
 }
 
 /* Responsive adjustments */
