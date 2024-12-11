@@ -54,6 +54,13 @@ a {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Condensed';
+  src: url('./fonts/Emotions\ Condensed\ Demo.otf') format('opentype'); /* Adjust format as needed */
+  font-weight: normal;
+  font-style: normal;
+}
+
   /*hidden scrollbar*/
 ::-webkit-scrollbar {
   display: none;

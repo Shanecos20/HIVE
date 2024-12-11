@@ -2,89 +2,100 @@
 html, body {
     margin: 0;
     padding: 0;
-  }
-  
-  /* Make page longer to allow scrolling */
-  .contact-page {
+    height: 100%; /* Ensure the body takes full height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Make page longer to allow scrolling */
+.contact-page {
     width: 100vw;
-    height: 120vh; 
-    background: #000;
+    height: 120vh;
     color: #fff;
     font-family: sans-serif;
     position: relative;
-  }
-  
-  .contact-content {
+}
+
+.contact-content {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     position: relative;
-    overflow: hidden; 
-  }
-  
-  .contact-info-left {
+    /* overflow: hidden; */ /* Removed to allow scrolling */
+}
+
+.banner-content {
+   margin-left: -100px;
+}
+
+.contact-info-left {
     position: absolute;
-    top: 40px;
+    top: 40%;
     left: 40px;
-    font-size: 14px;
-  }
-  
-  .contact-info-title {
+    font-size: 30px;
+}
+
+.contact-info-title {
     margin-bottom: 8px;
-  }
-  
-  .contact-info-detail {
-    font-size: 16px;
+    border-bottom: 1px solid #fff;
+}
+
+.contact-info-detail {
+    font-size: 30px;
     line-height: 1.4;
     white-space: pre-wrap;
-  }
-  
-  .contact-info-right {
+}
+
+.contact-info-right {
     position: absolute;
     top: 40px;
     right: 40px;
     text-align: right;
     font-size: 14px;
     line-height: 1.4;
-  }
-  
-  .main-heading {
+}
+
+.main-heading {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     width: 100%;
-    height: 100%;
     box-sizing: border-box;
-  }
-  
-  .main-heading h1 {
-    font-size: 8vw;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-family: Condensed, sans-serif;
+    color: #cfaa66;
+}
+
+.main-heading h1 {
+    font-size: 9vw;
     line-height: 1;
     margin: 0;
     white-space: pre-wrap;
-  }
-  
-  /* Banner */
-  .green-banner {
-    position: absolute;
+}
+
+/* Banner */
+.green-banner {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     font-weight: bold;
     white-space: nowrap;
-    font-size: 4vw;
+    font-size: 6vw;
     display: flex;
     align-items: center;
     height: auto;
-    width: 200%;
+    width: 200%; /* Ensure this width doesn't cause horizontal overflow */
     cursor: pointer;
     z-index: 2;
     overflow: hidden;
     color: #000000;
-  }
-  
-  /* White background static */
-  .banner-background {
+    margin-left: -100px;
+    font-family: Parkinsans;
+    
+}
+
+/* White background static */
+.banner-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -93,71 +104,81 @@ html, body {
     background: #fff; /* white stays in place */
     overflow: hidden;
     z-index: -2;
-  }
-  
-  /* Green overlay that moves up on hover */
-  .green-overlay {
+}
+
+/* Green overlay that moves up on hover */
+.green-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #ADFF2F;
+
+    /* gradient background color left to right */
+    background: linear-gradient(to right, #e8af72 0%, #998652 50%);
     z-index: -1;
     transition: transform 0.3s ease;
-  }
-  
-  .green-banner:hover .green-overlay {
+}
+
+.green-banner:hover .green-overlay {
     transform: translateY(-100%);
-  }
-  
-  .green-banner-inner {
+}
+
+.green-banner-inner {
     display: inline-block;
     white-space: nowrap;
     animation: slide-left 60s linear infinite;
-  }
-  
-  @keyframes slide-left {
+}
+
+@keyframes slide-left {
     0% {
-      transform: translateX(0%);
+        transform: translateX(0%);
     }
     100% {
-      transform: translateX(-50%);
+        transform: translateX(-50%);
     }
-  }
-  
-  .green-banner-inner span {
+}
+
+.green-banner-inner span {
     display: inline-block;
-  }
-  
-  /* Follow us */
-  .follow-us {
+}
+
+/* Follow us */
+.follow-us {
     position: absolute;
-    bottom: 40px;
+    bottom: -300px;
     width: 100%;
     text-align: center;
-  }
-  
-  .follow-title {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .social-links {
+    
+}
+
+.follow-title {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.social-links {
     display: inline-flex;
     gap: 20px;
-  }
-  
-  .social-links button {
+    border-radius: 10px;
+}
+
+.social-links button {
     border: 1px solid #fff;
     background: #000;
     color: #fff;
-    font-size: 16px;
-    padding: 8px 12px;
+    font-size: 60px;
+    font-weight: bolder;
+    padding: 1px 1px;
     cursor: pointer;
-  }
-  
-  .social-links button:hover {
+    border-radius: 50px;
+    width: 120px;
+    height: 80px;
+}
+
+.social-links button:hover {
     opacity: 0.8;
-  }
-  
+    color: #c8b773;
+    border: 1px solid #c8b773;
+}
+
